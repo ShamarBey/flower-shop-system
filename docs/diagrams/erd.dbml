@@ -1,0 +1,170 @@
+Enum product_type {
+  FLOWER
+  PACKAGING
+  DECOR
+  SERVICE
+}
+
+Enum order_status {
+  NEW
+  CONFIRMED
+  NEEDS_APPROVAL
+  ASSEMBLING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+Enum movement_type {
+  RECEIPT
+  RESERVATION
+  RELEASE
+  WRITE_OFF
+  SALE
+  ADJUSTMENT
+  TRANSFER
+}
+
+Table users {
+  id uuid [pk]
+  email varchar(255) [not null, unique]
+  password_hash varchar(255) [not null]
+  full_name varchar(255) [not null]
+  is_active boolean [not null, default: true]
+  created_at timestamptz [not null]
+}
+
+Table roles {
+  id smallint [pk]
+  code varchar(40) [not null, unique]
+  name varchar(100) [not null]
+}
+
+Table user_roles {
+  user_id uuid [pk, ref: > users.id]
+  role_id smallint [pk, ref: > roles.id]
+}
+
+Table customer_profiles {
+  user_id uuid [pk, ref: > users.id]
+  phone varchar(30) [not null]
+  default_address text
+}
+
+Table categories {
+  id uuid [pk]
+  name varchar(100) [not null, unique]
+}
+
+Table products {
+  id uuid [pk]
+  category_id uuid [not null, ref: > categories.id]
+  sku varchar(64) [not null, unique]
+  name varchar(255) [not null]
+  product_type product_type [not null]
+  unit varchar(20) [not null]
+  price numeric(12,2) [not null]
+  min_quantity numeric(10,3) [not null, default: 1]
+  max_quantity numeric(10,3)
+  is_active boolean [not null, default: true]
+}
+
+Table warehouses {
+  id uuid [pk]
+  name varchar(150) [not null]
+  address text
+  is_active boolean [not null, default: true]
+}
+
+Table stock_balances {
+  warehouse_id uuid [pk, ref: > warehouses.id]
+  product_id uuid [pk, ref: > products.id]
+  on_hand numeric(12,3) [not null, default: 0]
+  reserved numeric(12,3) [not null, default: 0]
+  updated_at timestamptz [not null]
+}
+
+Table stock_movements {
+  id uuid [pk]
+  warehouse_id uuid [not null, ref: > warehouses.id]
+  product_id uuid [not null, ref: > products.id]
+  movement_type movement_type [not null]
+  quantity numeric(12,3) [not null]
+  reason varchar(255) [not null]
+  order_id uuid [ref: > orders.id]
+  created_by uuid [not null, ref: > users.id]
+  created_at timestamptz [not null]
+}
+
+Table bouquet_recipes {
+  id uuid [pk]
+  name varchar(255) [not null]
+  description text
+  is_active boolean [not null, default: true]
+}
+
+Table recipe_items {
+  recipe_id uuid [pk, ref: > bouquet_recipes.id]
+  product_id uuid [pk, ref: > products.id]
+  quantity numeric(10,3) [not null]
+  is_required boolean [not null, default: false]
+}
+
+Table bouquet_drafts {
+  id uuid [pk]
+  customer_id uuid [not null, ref: > users.id]
+  name varchar(255)
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Table bouquet_draft_items {
+  id uuid [pk]
+  draft_id uuid [not null, ref: > bouquet_drafts.id]
+  product_id uuid [not null, ref: > products.id]
+  quantity numeric(10,3) [not null]
+}
+
+Table orders {
+  id uuid [pk]
+  number varchar(32) [not null, unique]
+  customer_id uuid [not null, ref: > users.id]
+  status order_status [not null]
+  fulfillment_type varchar(20) [not null]
+  delivery_address text
+  scheduled_at timestamptz
+  subtotal numeric(12,2) [not null]
+  delivery_fee numeric(12,2) [not null, default: 0]
+  total numeric(12,2) [not null]
+  created_at timestamptz [not null]
+}
+
+Table order_items {
+  id uuid [pk]
+  order_id uuid [not null, ref: > orders.id]
+  product_id uuid [not null, ref: > products.id]
+  product_name_snapshot varchar(255) [not null]
+  unit_price_snapshot numeric(12,2) [not null]
+  quantity numeric(10,3) [not null]
+  line_total numeric(12,2) [not null]
+}
+
+Table reservations {
+  id uuid [pk]
+  order_id uuid [not null, ref: > orders.id]
+  warehouse_id uuid [not null, ref: > warehouses.id]
+  product_id uuid [not null, ref: > products.id]
+  quantity numeric(12,3) [not null]
+  expires_at timestamptz [not null]
+  released_at timestamptz
+}
+
+Table order_status_history {
+  id uuid [pk]
+  order_id uuid [not null, ref: > orders.id]
+  from_status order_status
+  to_status order_status [not null]
+  changed_by uuid [not null, ref: > users.id]
+  comment text
+  created_at timestamptz [not null]
+}

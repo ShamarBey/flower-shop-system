@@ -1,0 +1,15 @@
+flowchart LR
+    Client[Клиент<br/>Web browser]
+    Staff[Сотрудник магазина<br/>Web browser]
+    API[Backend API<br/>FastAPI modular monolith]
+    DB[(PostgreSQL<br/>catalog, orders, inventory)]
+    Redis[(Redis<br/>cache and reservations)]
+    Notify[Notification provider<br/>email / SMS / messenger]
+    Storage[(Object storage<br/>product images)]
+
+    Client -->|HTTPS REST/JSON| API
+    Staff -->|HTTPS REST/JSON| API
+    API -->|SQL transactions| DB
+    API -->|TTL keys, cache| Redis
+    API -->|events and messages| Notify
+    API -->|images| Storage
