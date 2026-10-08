@@ -80,6 +80,8 @@
 
 ## 8. C4 Container
 
+![C4 Container Diagram](docs/diagrams/c4-container.svg)
+
 ```mermaid
 flowchart LR
     Client[Клиент<br/>Web browser]
@@ -117,6 +119,10 @@ flowchart LR
 Основные сущности: `User`, `Role`, `CustomerProfile`, `Product`, `Category`, `Warehouse`, `StockBalance`, `StockMovement`, `BouquetRecipe`, `RecipeItem`, `BouquetDraft`, `BouquetDraftItem`, `Order`, `OrderItem`, `OrderStatusHistory`, `Reservation`.
 
 Полная ER-схема находится в [docs/diagrams/erd.dbml](docs/diagrams/erd.dbml), описание модели — в [docs/domain-model.md](docs/domain-model.md).
+
+![ER Diagram](docs/diagrams/erd.svg)
+
+Ответы на контрольные вопросы находятся в [docs/control-questions.md](docs/control-questions.md).
 
 ## 11. Трассировка требований лабораторной работы
 

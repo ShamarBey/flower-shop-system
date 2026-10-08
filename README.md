@@ -16,6 +16,7 @@
 - [Бизнес-правила конструктора и склада](docs/business-rules.md) — расчет цены, совместимость, резервирование и списание.
 - [C4 Container Diagram](docs/diagrams/c4-container.mmd) — исходник архитектурной диаграммы.
 - [ERD](docs/diagrams/erd.dbml) — исходник схемы базы данных для dbdiagram.io.
+- [Контрольные вопросы](docs/control-questions.md) — ответы по архитектуре и моделированию данных.
 
 ## Принятые допущения MVP
 

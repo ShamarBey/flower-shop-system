@@ -67,6 +67,17 @@ Table products {
   min_quantity numeric(10,3) [not null, default: 1]
   max_quantity numeric(10,3)
   is_active boolean [not null, default: true]
+
+  indexes {
+    category_id [name: 'idx_products_category']
+    is_active [name: 'idx_products_active']
+  }
+
+  checks {
+    `price >= 0`
+    `min_quantity > 0`
+    `max_quantity IS NULL OR max_quantity >= min_quantity`
+  }
 }
 
 Table warehouses {
@@ -82,6 +93,12 @@ Table stock_balances {
   on_hand numeric(12,3) [not null, default: 0]
   reserved numeric(12,3) [not null, default: 0]
   updated_at timestamptz [not null]
+
+  checks {
+    `on_hand >= 0`
+    `reserved >= 0`
+    `reserved <= on_hand`
+  }
 }
 
 Table stock_movements {
@@ -137,6 +154,18 @@ Table orders {
   delivery_fee numeric(12,2) [not null, default: 0]
   total numeric(12,2) [not null]
   created_at timestamptz [not null]
+
+  indexes {
+    customer_id [name: 'idx_orders_customer']
+    status [name: 'idx_orders_status']
+    created_at [name: 'idx_orders_created_at']
+  }
+
+  checks {
+    `subtotal >= 0`
+    `delivery_fee >= 0`
+    `total >= 0`
+  }
 }
 
 Table order_items {
@@ -147,6 +176,16 @@ Table order_items {
   unit_price_snapshot numeric(12,2) [not null]
   quantity numeric(10,3) [not null]
   line_total numeric(12,2) [not null]
+
+  indexes {
+    order_id [name: 'idx_order_items_order']
+  }
+
+  checks {
+    `quantity > 0`
+    `unit_price_snapshot >= 0`
+    `line_total >= 0`
+  }
 }
 
 Table reservations {
@@ -157,6 +196,11 @@ Table reservations {
   quantity numeric(12,3) [not null]
   expires_at timestamptz [not null]
   released_at timestamptz
+
+  indexes {
+    order_id [name: 'idx_reservations_order']
+    expires_at [name: 'idx_reservations_expires']
+  }
 }
 
 Table order_status_history {

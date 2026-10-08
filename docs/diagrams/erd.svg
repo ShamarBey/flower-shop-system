@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1740" height="1160" viewBox="0 0 1740 1160">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+</marker>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172033} .title{font-size:26px;font-weight:700} .label{font-size:15px} .small{font-size:13px;fill:#475569} .box{stroke:#334155;stroke-width:2;rx:12} .line{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}</style>
+</defs>
+<text x="40" y="42" class="title">ER Diagram — Flower Shop Information System</text>
+<rect x="40" y="80" width="350" height="220" fill="#dbeafe" class="box"/>
+<text x="56" y="110" class="label" font-weight="700">users</text>
+<text x="56" y="136" class="small">PK id uuid</text>
+<text x="56" y="157" class="small">UQ email</text>
+<text x="56" y="178" class="small">password_hash</text>
+<text x="56" y="199" class="small">full_name</text>
+<text x="56" y="220" class="small">is_active</text>
+<text x="56" y="241" class="small">created_at</text>
+<rect x="450" y="80" width="280" height="150" fill="#dbeafe" class="box"/>
+<text x="466" y="110" class="label" font-weight="700">roles</text>
+<text x="466" y="136" class="small">PK id</text>
+<text x="466" y="157" class="small">UQ code</text>
+<text x="466" y="178" class="small">name</text>
+<rect x="40" y="380" width="350" height="240" fill="#dcfce7" class="box"/>
+<text x="56" y="410" class="label" font-weight="700">products</text>
+<text x="56" y="436" class="small">PK id</text>
+<text x="56" y="457" class="small">FK category_id</text>
+<text x="56" y="478" class="small">UQ sku</text>
+<text x="56" y="499" class="small">name</text>
+<text x="56" y="520" class="small">product_type</text>
+<text x="56" y="541" class="small">unit</text>
+<text x="56" y="562" class="small">price</text>
+<text x="56" y="583" class="small">min/max_quantity</text>
+<rect x="450" y="380" width="280" height="150" fill="#dcfce7" class="box"/>
+<text x="466" y="410" class="label" font-weight="700">categories</text>
+<text x="466" y="436" class="small">PK id</text>
+<text x="466" y="457" class="small">UQ name</text>
+<rect x="850" y="80" width="300" height="160" fill="#fef3c7" class="box"/>
+<text x="866" y="110" class="label" font-weight="700">warehouses</text>
+<text x="866" y="136" class="small">PK id</text>
+<text x="866" y="157" class="small">name</text>
+<text x="866" y="178" class="small">address</text>
+<text x="866" y="199" class="small">is_active</text>
+<rect x="850" y="300" width="370" height="210" fill="#fef3c7" class="box"/>
+<text x="866" y="330" class="label" font-weight="700">stock_balances</text>
+<text x="866" y="356" class="small">PK/FK warehouse_id</text>
+<text x="866" y="377" class="small">PK/FK product_id</text>
+<text x="866" y="398" class="small">on_hand</text>
+<text x="866" y="419" class="small">reserved</text>
+<text x="866" y="440" class="small">updated_at</text>
+<rect x="1280" y="300" width="400" height="230" fill="#fef3c7" class="box"/>
+<text x="1296" y="330" class="label" font-weight="700">stock_movements</text>
+<text x="1296" y="356" class="small">PK id</text>
+<text x="1296" y="377" class="small">FK warehouse_id</text>
+<text x="1296" y="398" class="small">FK product_id</text>
+<text x="1296" y="419" class="small">FK order_id</text>
+<text x="1296" y="440" class="small">movement_type</text>
+<text x="1296" y="461" class="small">quantity</text>
+<text x="1296" y="482" class="small">created_by</text>
+<rect x="40" y="760" width="350" height="170" fill="#fce7f3" class="box"/>
+<text x="56" y="790" class="label" font-weight="700">bouquet_recipes</text>
+<text x="56" y="816" class="small">PK id</text>
+<text x="56" y="837" class="small">name</text>
+<text x="56" y="858" class="small">description</text>
+<text x="56" y="879" class="small">is_active</text>
+<rect x="450" y="730" width="300" height="190" fill="#fce7f3" class="box"/>
+<text x="466" y="760" class="label" font-weight="700">recipe_items</text>
+<text x="466" y="786" class="small">PK/FK recipe_id</text>
+<text x="466" y="807" class="small">PK/FK product_id</text>
+<text x="466" y="828" class="small">quantity</text>
+<text x="466" y="849" class="small">is_required</text>
+<rect x="850" y="610" width="370" height="250" fill="#ede9fe" class="box"/>
+<text x="866" y="640" class="label" font-weight="700">orders</text>
+<text x="866" y="666" class="small">PK id</text>
+<text x="866" y="687" class="small">UQ number</text>
+<text x="866" y="708" class="small">FK customer_id</text>
+<text x="866" y="729" class="small">status</text>
+<text x="866" y="750" class="small">fulfillment_type</text>
+<text x="866" y="771" class="small">scheduled_at</text>
+<text x="866" y="792" class="small">total</text>
+<rect x="1280" y="620" width="400" height="230" fill="#ede9fe" class="box"/>
+<text x="1296" y="650" class="label" font-weight="700">order_items</text>
+<text x="1296" y="676" class="small">PK id</text>
+<text x="1296" y="697" class="small">FK order_id</text>
+<text x="1296" y="718" class="small">FK product_id</text>
+<text x="1296" y="739" class="small">name_snapshot</text>
+<text x="1296" y="760" class="small">price_snapshot</text>
+<text x="1296" y="781" class="small">quantity</text>
+<text x="1296" y="802" class="small">line_total</text>
+<rect x="850" y="940" width="370" height="170" fill="#fee2e2" class="box"/>
+<text x="866" y="970" class="label" font-weight="700">reservations</text>
+<text x="866" y="996" class="small">PK id</text>
+<text x="866" y="1017" class="small">FK order_id</text>
+<text x="866" y="1038" class="small">FK warehouse_id</text>
+<text x="866" y="1059" class="small">FK product_id</text>
+<text x="866" y="1080" class="small">quantity</text>
+<text x="866" y="1101" class="small">expires_at</text>
+<rect x="1280" y="920" width="400" height="190" fill="#fee2e2" class="box"/>
+<text x="1296" y="950" class="label" font-weight="700">order_status_history</text>
+<text x="1296" y="976" class="small">PK id</text>
+<text x="1296" y="997" class="small">FK order_id</text>
+<text x="1296" y="1018" class="small">FK changed_by</text>
+<text x="1296" y="1039" class="small">from/to_status</text>
+<text x="1296" y="1060" class="small">comment</text>
+<text x="1296" y="1081" class="small">created_at</text>
+<path d="M390,140 L450,140" class="line"/>
+<text x="420" y="134" text-anchor="middle" class="small">user_roles</text>
+<path d="M390,460 L450,460" class="line"/>
+<text x="420" y="454" text-anchor="middle" class="small">category</text>
+<path d="M730,460 L850,395" class="line"/>
+<text x="790" y="421" text-anchor="middle" class="small">stock</text>
+<path d="M730,165 L850,160" class="line"/>
+<text x="790" y="156" text-anchor="middle" class="small">warehouse</text>
+<path d="M1150,390 L1280,390" class="line"/>
+<text x="1215" y="384" text-anchor="middle" class="small">movement</text>
+<path d="M390,820 L450,820" class="line"/>
+<text x="420" y="814" text-anchor="middle" class="small">recipe</text>
+<path d="M750,820 L850,730" class="line"/>
+<text x="800" y="769" text-anchor="middle" class="small">order</text>
+<path d="M1220,730 L1280,730" class="line"/>
+<text x="1250" y="724" text-anchor="middle" class="small">items</text>
+<path d="M1035,860 L1035,940" class="line"/>
+<text x="1035" y="894" text-anchor="middle" class="small">reserve</text>
+<path d="M1220,750 L1280,1010" class="line"/>
+<text x="1250" y="874" text-anchor="middle" class="small">history</text>
+<text x="40" y="1140" class="small">PK — primary key, FK — foreign key, UQ — unique constraint. Detailed source: erd.dbml</text>
+</svg>

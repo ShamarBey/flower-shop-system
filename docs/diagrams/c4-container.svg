@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+</marker>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172033} .title{font-size:26px;font-weight:700} .label{font-size:15px} .small{font-size:13px;fill:#475569} .box{stroke:#334155;stroke-width:2;rx:12} .line{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}</style>
+</defs>
+<text x="40" y="42" class="title">C4 Container Diagram — Flower Shop Information System</text>
+<rect x="50" y="180" width="240" height="120" fill="#dbeafe" class="box"/>
+<text x="66" y="210" class="label" font-weight="700">Client</text>
+<text x="66" y="236" class="small">Web browser</text>
+<text x="66" y="257" class="small">catalog and bouquet builder</text>
+<rect x="50" y="430" width="240" height="120" fill="#dbeafe" class="box"/>
+<text x="66" y="460" class="label" font-weight="700">Staff</text>
+<text x="66" y="486" class="small">Web browser</text>
+<text x="66" y="507" class="small">manager, stockkeeper, florist</text>
+<rect x="430" y="260" width="320" height="180" fill="#dcfce7" class="box"/>
+<text x="446" y="290" class="label" font-weight="700">Backend API</text>
+<text x="446" y="316" class="small">FastAPI modular monolith</text>
+<text x="446" y="337" class="small">Auth, Catalog, Bouquet</text>
+<text x="446" y="358" class="small">Order, Inventory, Admin</text>
+<rect x="900" y="100" width="240" height="130" fill="#fef3c7" class="box"/>
+<text x="916" y="130" class="label" font-weight="700">PostgreSQL</text>
+<text x="916" y="156" class="small">catalog</text>
+<text x="916" y="177" class="small">orders and users</text>
+<text x="916" y="198" class="small">inventory and audit</text>
+<rect x="900" y="290" width="240" height="110" fill="#fef3c7" class="box"/>
+<text x="916" y="320" class="label" font-weight="700">Redis</text>
+<text x="916" y="346" class="small">cache</text>
+<text x="916" y="367" class="small">short reservations</text>
+<rect x="900" y="460" width="240" height="110" fill="#fef3c7" class="box"/>
+<text x="916" y="490" class="label" font-weight="700">Notification Provider</text>
+<text x="916" y="516" class="small">email / SMS / messenger</text>
+<rect x="900" y="610" width="240" height="70" fill="#fef3c7" class="box"/>
+<text x="916" y="640" class="label" font-weight="700">Object Storage</text>
+<text x="916" y="666" class="small">product images</text>
+<path d="M290,240 L430,320" class="line"/>
+<text x="360" y="274" text-anchor="middle" class="small">HTTPS REST/JSON</text>
+<path d="M290,490 L430,390" class="line"/>
+<text x="360" y="434" text-anchor="middle" class="small">HTTPS REST/JSON</text>
+<path d="M750,300 L900,180" class="line"/>
+<text x="825" y="234" text-anchor="middle" class="small">SQL transactions</text>
+<path d="M750,350 L900,345" class="line"/>
+<text x="825" y="341" text-anchor="middle" class="small">TTL and cache</text>
+<path d="M750,400 L900,515" class="line"/>
+<text x="825" y="451" text-anchor="middle" class="small">events</text>
+<path d="M750,430 L900,640" class="line"/>
+<text x="825" y="529" text-anchor="middle" class="small">images</text>
+</svg>
