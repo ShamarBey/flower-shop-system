@@ -23,6 +23,8 @@ Desktop.ini
 postgres-data/
 coverage/
 reports/
+output/playwright/
+.playwright-cli/
 
 # Local study source
 Lab01_Architecture.pdf

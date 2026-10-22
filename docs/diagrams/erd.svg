@@ -1,125 +1,893 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1740" height="1160" viewBox="0 0 1740 1160">
-<defs>
-<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-<path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
-</marker>
-<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172033} .title{font-size:26px;font-weight:700} .label{font-size:15px} .small{font-size:13px;fill:#475569} .box{stroke:#334155;stroke-width:2;rx:12} .line{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}</style>
-</defs>
-<text x="40" y="42" class="title">ER Diagram — Flower Shop Information System</text>
-<rect x="40" y="80" width="350" height="220" fill="#dbeafe" class="box"/>
-<text x="56" y="110" class="label" font-weight="700">users</text>
-<text x="56" y="136" class="small">PK id uuid</text>
-<text x="56" y="157" class="small">UQ email</text>
-<text x="56" y="178" class="small">password_hash</text>
-<text x="56" y="199" class="small">full_name</text>
-<text x="56" y="220" class="small">is_active</text>
-<text x="56" y="241" class="small">created_at</text>
-<rect x="450" y="80" width="280" height="150" fill="#dbeafe" class="box"/>
-<text x="466" y="110" class="label" font-weight="700">roles</text>
-<text x="466" y="136" class="small">PK id</text>
-<text x="466" y="157" class="small">UQ code</text>
-<text x="466" y="178" class="small">name</text>
-<rect x="40" y="380" width="350" height="240" fill="#dcfce7" class="box"/>
-<text x="56" y="410" class="label" font-weight="700">products</text>
-<text x="56" y="436" class="small">PK id</text>
-<text x="56" y="457" class="small">FK category_id</text>
-<text x="56" y="478" class="small">UQ sku</text>
-<text x="56" y="499" class="small">name</text>
-<text x="56" y="520" class="small">product_type</text>
-<text x="56" y="541" class="small">unit</text>
-<text x="56" y="562" class="small">price</text>
-<text x="56" y="583" class="small">min/max_quantity</text>
-<rect x="450" y="380" width="280" height="150" fill="#dcfce7" class="box"/>
-<text x="466" y="410" class="label" font-weight="700">categories</text>
-<text x="466" y="436" class="small">PK id</text>
-<text x="466" y="457" class="small">UQ name</text>
-<rect x="850" y="80" width="300" height="160" fill="#fef3c7" class="box"/>
-<text x="866" y="110" class="label" font-weight="700">warehouses</text>
-<text x="866" y="136" class="small">PK id</text>
-<text x="866" y="157" class="small">name</text>
-<text x="866" y="178" class="small">address</text>
-<text x="866" y="199" class="small">is_active</text>
-<rect x="850" y="300" width="370" height="210" fill="#fef3c7" class="box"/>
-<text x="866" y="330" class="label" font-weight="700">stock_balances</text>
-<text x="866" y="356" class="small">PK/FK warehouse_id</text>
-<text x="866" y="377" class="small">PK/FK product_id</text>
-<text x="866" y="398" class="small">on_hand</text>
-<text x="866" y="419" class="small">reserved</text>
-<text x="866" y="440" class="small">updated_at</text>
-<rect x="1280" y="300" width="400" height="230" fill="#fef3c7" class="box"/>
-<text x="1296" y="330" class="label" font-weight="700">stock_movements</text>
-<text x="1296" y="356" class="small">PK id</text>
-<text x="1296" y="377" class="small">FK warehouse_id</text>
-<text x="1296" y="398" class="small">FK product_id</text>
-<text x="1296" y="419" class="small">FK order_id</text>
-<text x="1296" y="440" class="small">movement_type</text>
-<text x="1296" y="461" class="small">quantity</text>
-<text x="1296" y="482" class="small">created_by</text>
-<rect x="40" y="760" width="350" height="170" fill="#fce7f3" class="box"/>
-<text x="56" y="790" class="label" font-weight="700">bouquet_recipes</text>
-<text x="56" y="816" class="small">PK id</text>
-<text x="56" y="837" class="small">name</text>
-<text x="56" y="858" class="small">description</text>
-<text x="56" y="879" class="small">is_active</text>
-<rect x="450" y="730" width="300" height="190" fill="#fce7f3" class="box"/>
-<text x="466" y="760" class="label" font-weight="700">recipe_items</text>
-<text x="466" y="786" class="small">PK/FK recipe_id</text>
-<text x="466" y="807" class="small">PK/FK product_id</text>
-<text x="466" y="828" class="small">quantity</text>
-<text x="466" y="849" class="small">is_required</text>
-<rect x="850" y="610" width="370" height="250" fill="#ede9fe" class="box"/>
-<text x="866" y="640" class="label" font-weight="700">orders</text>
-<text x="866" y="666" class="small">PK id</text>
-<text x="866" y="687" class="small">UQ number</text>
-<text x="866" y="708" class="small">FK customer_id</text>
-<text x="866" y="729" class="small">status</text>
-<text x="866" y="750" class="small">fulfillment_type</text>
-<text x="866" y="771" class="small">scheduled_at</text>
-<text x="866" y="792" class="small">total</text>
-<rect x="1280" y="620" width="400" height="230" fill="#ede9fe" class="box"/>
-<text x="1296" y="650" class="label" font-weight="700">order_items</text>
-<text x="1296" y="676" class="small">PK id</text>
-<text x="1296" y="697" class="small">FK order_id</text>
-<text x="1296" y="718" class="small">FK product_id</text>
-<text x="1296" y="739" class="small">name_snapshot</text>
-<text x="1296" y="760" class="small">price_snapshot</text>
-<text x="1296" y="781" class="small">quantity</text>
-<text x="1296" y="802" class="small">line_total</text>
-<rect x="850" y="940" width="370" height="170" fill="#fee2e2" class="box"/>
-<text x="866" y="970" class="label" font-weight="700">reservations</text>
-<text x="866" y="996" class="small">PK id</text>
-<text x="866" y="1017" class="small">FK order_id</text>
-<text x="866" y="1038" class="small">FK warehouse_id</text>
-<text x="866" y="1059" class="small">FK product_id</text>
-<text x="866" y="1080" class="small">quantity</text>
-<text x="866" y="1101" class="small">expires_at</text>
-<rect x="1280" y="920" width="400" height="190" fill="#fee2e2" class="box"/>
-<text x="1296" y="950" class="label" font-weight="700">order_status_history</text>
-<text x="1296" y="976" class="small">PK id</text>
-<text x="1296" y="997" class="small">FK order_id</text>
-<text x="1296" y="1018" class="small">FK changed_by</text>
-<text x="1296" y="1039" class="small">from/to_status</text>
-<text x="1296" y="1060" class="small">comment</text>
-<text x="1296" y="1081" class="small">created_at</text>
-<path d="M390,140 L450,140" class="line"/>
-<text x="420" y="134" text-anchor="middle" class="small">user_roles</text>
-<path d="M390,460 L450,460" class="line"/>
-<text x="420" y="454" text-anchor="middle" class="small">category</text>
-<path d="M730,460 L850,395" class="line"/>
-<text x="790" y="421" text-anchor="middle" class="small">stock</text>
-<path d="M730,165 L850,160" class="line"/>
-<text x="790" y="156" text-anchor="middle" class="small">warehouse</text>
-<path d="M1150,390 L1280,390" class="line"/>
-<text x="1215" y="384" text-anchor="middle" class="small">movement</text>
-<path d="M390,820 L450,820" class="line"/>
-<text x="420" y="814" text-anchor="middle" class="small">recipe</text>
-<path d="M750,820 L850,730" class="line"/>
-<text x="800" y="769" text-anchor="middle" class="small">order</text>
-<path d="M1220,730 L1280,730" class="line"/>
-<text x="1250" y="724" text-anchor="middle" class="small">items</text>
-<path d="M1035,860 L1035,940" class="line"/>
-<text x="1035" y="894" text-anchor="middle" class="small">reserve</text>
-<path d="M1220,750 L1280,1010" class="line"/>
-<text x="1250" y="874" text-anchor="middle" class="small">history</text>
-<text x="40" y="1140" class="small">PK — primary key, FK — foreign key, UQ — unique constraint. Detailed source: erd.dbml</text>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated by graphviz version 16.1.0 (20260904.0139)
+ -->
+<!-- Title: ERD Pages: 1 -->
+<svg width="1133pt" height="2030pt"
+ viewBox="0.00 0.00 1133.00 2030.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(28.8 2001)">
+<title>ERD</title>
+<polygon fill="white" stroke="none" points="-28.8,28.8 -28.8,-2001 1103.91,-2001 1103.91,28.8 -28.8,28.8"/>
+<text xml:space="preserve" text-anchor="middle" x="537.55" y="-1950.2" font-family="Arial" font-size="20.00">Цветочный магазин — ERD из erd.dbml</text>
+<text xml:space="preserve" text-anchor="middle" x="537.55" y="-1926.2" font-family="Arial" font-size="20.00">PK — первичный ключ; FK — внешний ключ; UQ — уникальность; NN — NOT NULL</text>
+<text xml:space="preserve" text-anchor="middle" x="537.55" y="-1902.2" font-family="Arial" font-size="20.00">1 / 0..1 / 0..* — кратность на соответствующем конце связи</text>
+<!-- users -->
+<g id="node1" class="node">
+<title>users</title>
+<polygon fill="#dbeafe" stroke="none" points="0,-1494 0,-1526.8 270.54,-1526.8 270.54,-1494 0,-1494"/>
+<polygon fill="none" stroke="black" points="0,-1494 0,-1526.8 270.54,-1526.8 270.54,-1494 0,-1494"/>
+<text xml:space="preserve" text-anchor="start" x="116.59" y="-1507.2" font-family="Arial" font-weight="bold" font-size="14.00">users</text>
+<polygon fill="none" stroke="black" points="0,-1461.2 0,-1494 114.06,-1494 114.06,-1461.2 0,-1461.2"/>
+<text xml:space="preserve" text-anchor="start" x="8" y="-1472" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="114.06,-1461.2 114.06,-1494 209.43,-1494 209.43,-1461.2 114.06,-1461.2"/>
+<text xml:space="preserve" text-anchor="start" x="122.06" y="-1472" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="209.43,-1461.2 209.43,-1494 270.54,-1494 270.54,-1461.2 209.43,-1461.2"/>
+<text xml:space="preserve" text-anchor="start" x="217.43" y="-1472" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="0,-1428.4 0,-1461.2 114.06,-1461.2 114.06,-1428.4 0,-1428.4"/>
+<text xml:space="preserve" text-anchor="start" x="8" y="-1439.2" font-family="Arial" font-size="14.00">email</text>
+<polygon fill="none" stroke="black" points="114.06,-1428.4 114.06,-1461.2 209.43,-1461.2 209.43,-1428.4 114.06,-1428.4"/>
+<text xml:space="preserve" text-anchor="start" x="122.06" y="-1439.2" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="209.43,-1428.4 209.43,-1461.2 270.54,-1461.2 270.54,-1428.4 209.43,-1428.4"/>
+<text xml:space="preserve" text-anchor="start" x="217.43" y="-1439.2" font-family="Arial" font-size="14.00">UQ NN</text>
+<polygon fill="none" stroke="black" points="0,-1395.6 0,-1428.4 114.06,-1428.4 114.06,-1395.6 0,-1395.6"/>
+<text xml:space="preserve" text-anchor="start" x="8" y="-1406.4" font-family="Arial" font-size="14.00">password_hash</text>
+<polygon fill="none" stroke="black" points="114.06,-1395.6 114.06,-1428.4 209.43,-1428.4 209.43,-1395.6 114.06,-1395.6"/>
+<text xml:space="preserve" text-anchor="start" x="122.06" y="-1406.4" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="209.43,-1395.6 209.43,-1428.4 270.54,-1428.4 270.54,-1395.6 209.43,-1395.6"/>
+<text xml:space="preserve" text-anchor="start" x="217.43" y="-1406.4" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="0,-1362.8 0,-1395.6 114.06,-1395.6 114.06,-1362.8 0,-1362.8"/>
+<text xml:space="preserve" text-anchor="start" x="8" y="-1373.6" font-family="Arial" font-size="14.00">full_name</text>
+<polygon fill="none" stroke="black" points="114.06,-1362.8 114.06,-1395.6 209.43,-1395.6 209.43,-1362.8 114.06,-1362.8"/>
+<text xml:space="preserve" text-anchor="start" x="122.06" y="-1373.6" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="209.43,-1362.8 209.43,-1395.6 270.54,-1395.6 270.54,-1362.8 209.43,-1362.8"/>
+<text xml:space="preserve" text-anchor="start" x="217.43" y="-1373.6" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="0,-1330 0,-1362.8 114.06,-1362.8 114.06,-1330 0,-1330"/>
+<text xml:space="preserve" text-anchor="start" x="8" y="-1340.8" font-family="Arial" font-size="14.00">is_active</text>
+<polygon fill="none" stroke="black" points="114.06,-1330 114.06,-1362.8 209.43,-1362.8 209.43,-1330 114.06,-1330"/>
+<text xml:space="preserve" text-anchor="start" x="122.06" y="-1340.8" font-family="Arial" font-size="14.00">boolean</text>
+<polygon fill="none" stroke="black" points="209.43,-1330 209.43,-1362.8 270.54,-1362.8 270.54,-1330 209.43,-1330"/>
+<text xml:space="preserve" text-anchor="start" x="217.43" y="-1340.8" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="0,-1297.2 0,-1330 114.06,-1330 114.06,-1297.2 0,-1297.2"/>
+<text xml:space="preserve" text-anchor="start" x="8" y="-1308" font-family="Arial" font-size="14.00">created_at</text>
+<polygon fill="none" stroke="black" points="114.06,-1297.2 114.06,-1330 209.43,-1330 209.43,-1297.2 114.06,-1297.2"/>
+<text xml:space="preserve" text-anchor="start" x="122.06" y="-1308" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="209.43,-1297.2 209.43,-1330 270.54,-1330 270.54,-1297.2 209.43,-1297.2"/>
+<text xml:space="preserve" text-anchor="start" x="217.43" y="-1308" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- user_roles -->
+<g id="node3" class="node">
+<title>user_roles</title>
+<polygon fill="#dbeafe" stroke="none" points="404.22,-1842.4 404.22,-1875.2 610.16,-1875.2 610.16,-1842.4 404.22,-1842.4"/>
+<polygon fill="none" stroke="black" points="404.22,-1842.4 404.22,-1875.2 610.16,-1875.2 610.16,-1842.4 404.22,-1842.4"/>
+<text xml:space="preserve" text-anchor="start" x="471.78" y="-1855.6" font-family="Arial" font-weight="bold" font-size="14.00">user_roles</text>
+<polygon fill="none" stroke="black" points="404.22,-1809.6 404.22,-1842.4 466.14,-1842.4 466.14,-1809.6 404.22,-1809.6"/>
+<text xml:space="preserve" text-anchor="start" x="412.22" y="-1820.4" font-family="Arial" font-size="14.00">user_id</text>
+<polygon fill="none" stroke="black" points="466.14,-1809.6 466.14,-1842.4 529.6,-1842.4 529.6,-1809.6 466.14,-1809.6"/>
+<text xml:space="preserve" text-anchor="start" x="474.14" y="-1820.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="529.6,-1809.6 529.6,-1842.4 610.16,-1842.4 610.16,-1809.6 529.6,-1809.6"/>
+<text xml:space="preserve" text-anchor="start" x="537.6" y="-1820.4" font-family="Arial" font-size="14.00">PK FK NN</text>
+<polygon fill="none" stroke="black" points="404.22,-1776.8 404.22,-1809.6 466.14,-1809.6 466.14,-1776.8 404.22,-1776.8"/>
+<text xml:space="preserve" text-anchor="start" x="412.22" y="-1787.6" font-family="Arial" font-size="14.00">role_id</text>
+<polygon fill="none" stroke="black" points="466.14,-1776.8 466.14,-1809.6 529.6,-1809.6 529.6,-1776.8 466.14,-1776.8"/>
+<text xml:space="preserve" text-anchor="start" x="474.14" y="-1787.6" font-family="Arial" font-size="14.00">smallint</text>
+<polygon fill="none" stroke="black" points="529.6,-1776.8 529.6,-1809.6 610.16,-1809.6 610.16,-1776.8 529.6,-1776.8"/>
+<text xml:space="preserve" text-anchor="start" x="537.6" y="-1787.6" font-family="Arial" font-size="14.00">PK FK NN</text>
+</g>
+<!-- users&#45;&gt;user_roles -->
+<g id="edge1" class="edge">
+<title>users:e&#45;&gt;user_roles:w</title>
+<g id="a_edge1"><a xlink:title="users.id &#45;&gt; user_roles.user_id">
+<path fill="none" stroke="#64748b" d="M270.54,-1477.6C270.54,-1477.6 364.54,-1744 364.54,-1744 364.54,-1744 403.22,-1826 403.22,-1826"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="384" y="-1807.02" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="288.04" y="-1492.45" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- customer_profiles -->
+<g id="node4" class="node">
+<title>customer_profiles</title>
+<polygon fill="#dbeafe" stroke="none" points="365.31,-1613.8 365.31,-1646.6 649.08,-1646.6 649.08,-1613.8 365.31,-1613.8"/>
+<polygon fill="none" stroke="black" points="365.31,-1613.8 365.31,-1646.6 649.08,-1646.6 649.08,-1613.8 365.31,-1613.8"/>
+<text xml:space="preserve" text-anchor="start" x="446.51" y="-1627" font-family="Arial" font-weight="bold" font-size="14.00">customer_profiles</text>
+<polygon fill="none" stroke="black" points="365.31,-1581 365.31,-1613.8 480.93,-1613.8 480.93,-1581 365.31,-1581"/>
+<text xml:space="preserve" text-anchor="start" x="373.31" y="-1591.8" font-family="Arial" font-size="14.00">user_id</text>
+<polygon fill="none" stroke="black" points="480.93,-1581 480.93,-1613.8 568.51,-1613.8 568.51,-1581 480.93,-1581"/>
+<text xml:space="preserve" text-anchor="start" x="488.93" y="-1591.8" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="568.51,-1581 568.51,-1613.8 649.08,-1613.8 649.08,-1581 568.51,-1581"/>
+<text xml:space="preserve" text-anchor="start" x="576.51" y="-1591.8" font-family="Arial" font-size="14.00">PK FK NN</text>
+<polygon fill="none" stroke="black" points="365.31,-1548.2 365.31,-1581 480.93,-1581 480.93,-1548.2 365.31,-1548.2"/>
+<text xml:space="preserve" text-anchor="start" x="373.31" y="-1559" font-family="Arial" font-size="14.00">phone</text>
+<polygon fill="none" stroke="black" points="480.93,-1548.2 480.93,-1581 568.51,-1581 568.51,-1548.2 480.93,-1548.2"/>
+<text xml:space="preserve" text-anchor="start" x="488.93" y="-1559" font-family="Arial" font-size="14.00">varchar(30)</text>
+<polygon fill="none" stroke="black" points="568.51,-1548.2 568.51,-1581 649.08,-1581 649.08,-1548.2 568.51,-1548.2"/>
+<text xml:space="preserve" text-anchor="start" x="576.51" y="-1559" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="365.31,-1515.4 365.31,-1548.2 480.93,-1548.2 480.93,-1515.4 365.31,-1515.4"/>
+<text xml:space="preserve" text-anchor="start" x="373.31" y="-1526.2" font-family="Arial" font-size="14.00">default_address</text>
+<polygon fill="none" stroke="black" points="480.93,-1515.4 480.93,-1548.2 568.51,-1548.2 568.51,-1515.4 480.93,-1515.4"/>
+<text xml:space="preserve" text-anchor="start" x="488.93" y="-1526.2" font-family="Arial" font-size="14.00">text</text>
+<polygon fill="none" stroke="black" points="568.51,-1515.4 568.51,-1548.2 649.08,-1548.2 649.08,-1515.4 568.51,-1515.4"/>
+</g>
+<!-- users&#45;&gt;customer_profiles -->
+<g id="edge3" class="edge">
+<title>users:e&#45;&gt;customer_profiles:w</title>
+<g id="a_edge3"><a xlink:title="users.id &#45;&gt; customer_profiles.user_id">
+<path fill="none" stroke="#64748b" d="M270.54,-1477.6C270.54,-1477.6 364.54,-1597.4 364.54,-1597.4"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="342.24" y="-1583.1" font-family="Arial" font-size="10.00">0..1</text>
+<text xml:space="preserve" text-anchor="middle" x="292.84" y="-1485.9" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- stock_movements -->
+<g id="node9" class="node">
+<title>stock_movements</title>
+<polygon fill="#dbeafe" stroke="none" points="764.48,-1554.2 764.48,-1587 1054.48,-1587 1054.48,-1554.2 764.48,-1554.2"/>
+<polygon fill="none" stroke="black" points="764.48,-1554.2 764.48,-1587 1054.48,-1587 1054.48,-1554.2 764.48,-1554.2"/>
+<text xml:space="preserve" text-anchor="start" x="848.39" y="-1567.4" font-family="Arial" font-weight="bold" font-size="14.00">stock_movements</text>
+<polygon fill="none" stroke="black" points="764.48,-1521.4 764.48,-1554.2 880.08,-1554.2 880.08,-1521.4 764.48,-1521.4"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1532.2" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="880.08,-1521.4 880.08,-1554.2 995.69,-1554.2 995.69,-1521.4 880.08,-1521.4"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1532.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="995.69,-1521.4 995.69,-1554.2 1054.48,-1554.2 1054.48,-1521.4 995.69,-1521.4"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1532.2" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="764.48,-1488.6 764.48,-1521.4 880.08,-1521.4 880.08,-1488.6 764.48,-1488.6"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1499.4" font-family="Arial" font-size="14.00">warehouse_id</text>
+<polygon fill="none" stroke="black" points="880.08,-1488.6 880.08,-1521.4 995.69,-1521.4 995.69,-1488.6 880.08,-1488.6"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1499.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="995.69,-1488.6 995.69,-1521.4 1054.48,-1521.4 1054.48,-1488.6 995.69,-1488.6"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1499.4" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="764.48,-1455.8 764.48,-1488.6 880.08,-1488.6 880.08,-1455.8 764.48,-1455.8"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1466.6" font-family="Arial" font-size="14.00">product_id</text>
+<polygon fill="none" stroke="black" points="880.08,-1455.8 880.08,-1488.6 995.69,-1488.6 995.69,-1455.8 880.08,-1455.8"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1466.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="995.69,-1455.8 995.69,-1488.6 1054.48,-1488.6 1054.48,-1455.8 995.69,-1455.8"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1466.6" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="764.48,-1423 764.48,-1455.8 880.08,-1455.8 880.08,-1423 764.48,-1423"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1433.8" font-family="Arial" font-size="14.00">movement_type</text>
+<polygon fill="none" stroke="black" points="880.08,-1423 880.08,-1455.8 995.69,-1455.8 995.69,-1423 880.08,-1423"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1433.8" font-family="Arial" font-size="14.00">movement_type</text>
+<polygon fill="none" stroke="black" points="995.69,-1423 995.69,-1455.8 1054.48,-1455.8 1054.48,-1423 995.69,-1423"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1433.8" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="764.48,-1390.2 764.48,-1423 880.08,-1423 880.08,-1390.2 764.48,-1390.2"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1401" font-family="Arial" font-size="14.00">quantity</text>
+<polygon fill="none" stroke="black" points="880.08,-1390.2 880.08,-1423 995.69,-1423 995.69,-1390.2 880.08,-1390.2"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1401" font-family="Arial" font-size="14.00">numeric(12,3)</text>
+<polygon fill="none" stroke="black" points="995.69,-1390.2 995.69,-1423 1054.48,-1423 1054.48,-1390.2 995.69,-1390.2"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1401" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="764.48,-1357.4 764.48,-1390.2 880.08,-1390.2 880.08,-1357.4 764.48,-1357.4"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1368.2" font-family="Arial" font-size="14.00">reason</text>
+<polygon fill="none" stroke="black" points="880.08,-1357.4 880.08,-1390.2 995.69,-1390.2 995.69,-1357.4 880.08,-1357.4"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1368.2" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="995.69,-1357.4 995.69,-1390.2 1054.48,-1390.2 1054.48,-1357.4 995.69,-1357.4"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1368.2" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="764.48,-1324.6 764.48,-1357.4 880.08,-1357.4 880.08,-1324.6 764.48,-1324.6"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1335.4" font-family="Arial" font-size="14.00">order_id</text>
+<polygon fill="none" stroke="black" points="880.08,-1324.6 880.08,-1357.4 995.69,-1357.4 995.69,-1324.6 880.08,-1324.6"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1335.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="995.69,-1324.6 995.69,-1357.4 1054.48,-1357.4 1054.48,-1324.6 995.69,-1324.6"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1335.4" font-family="Arial" font-size="14.00">FK</text>
+<polygon fill="none" stroke="black" points="764.48,-1291.8 764.48,-1324.6 880.08,-1324.6 880.08,-1291.8 764.48,-1291.8"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1302.6" font-family="Arial" font-size="14.00">created_by</text>
+<polygon fill="none" stroke="black" points="880.08,-1291.8 880.08,-1324.6 995.69,-1324.6 995.69,-1291.8 880.08,-1291.8"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1302.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="995.69,-1291.8 995.69,-1324.6 1054.48,-1324.6 1054.48,-1291.8 995.69,-1291.8"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1302.6" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="764.48,-1259 764.48,-1291.8 880.08,-1291.8 880.08,-1259 764.48,-1259"/>
+<text xml:space="preserve" text-anchor="start" x="772.48" y="-1269.8" font-family="Arial" font-size="14.00">created_at</text>
+<polygon fill="none" stroke="black" points="880.08,-1259 880.08,-1291.8 995.69,-1291.8 995.69,-1259 880.08,-1259"/>
+<text xml:space="preserve" text-anchor="start" x="888.08" y="-1269.8" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="995.69,-1259 995.69,-1291.8 1054.48,-1291.8 1054.48,-1259 995.69,-1259"/>
+<text xml:space="preserve" text-anchor="start" x="1003.69" y="-1269.8" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- users&#45;&gt;stock_movements -->
+<g id="edge10" class="edge">
+<title>users:e&#45;&gt;stock_movements:w</title>
+<g id="a_edge10"><a xlink:title="users.id &#45;&gt; stock_movements.created_by">
+<path fill="none" stroke="#64748b" d="M270.54,-1477.6C270.54,-1477.6 364.54,-1123 364.54,-1123 364.54,-1123 649.85,-1123 649.85,-1123 649.85,-1123 763.48,-1308.2 763.48,-1308.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="742.62" y="-1291.41" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="266.13" y="-1449.99" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- bouquet_drafts -->
+<g id="node12" class="node">
+<title>bouquet_drafts</title>
+<polygon fill="#dbeafe" stroke="none" points="383.99,-370.6 383.99,-403.4 630.4,-403.4 630.4,-370.6 383.99,-370.6"/>
+<polygon fill="none" stroke="black" points="383.99,-370.6 383.99,-403.4 630.4,-403.4 630.4,-370.6 383.99,-370.6"/>
+<text xml:space="preserve" text-anchor="start" x="456.25" y="-383.8" font-family="Arial" font-weight="bold" font-size="14.00">bouquet_drafts</text>
+<polygon fill="none" stroke="black" points="383.99,-337.8 383.99,-370.6 476.24,-370.6 476.24,-337.8 383.99,-337.8"/>
+<text xml:space="preserve" text-anchor="start" x="391.99" y="-348.6" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="476.24,-337.8 476.24,-370.6 571.61,-370.6 571.61,-337.8 476.24,-337.8"/>
+<text xml:space="preserve" text-anchor="start" x="484.24" y="-348.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="571.61,-337.8 571.61,-370.6 630.4,-370.6 630.4,-337.8 571.61,-337.8"/>
+<text xml:space="preserve" text-anchor="start" x="579.61" y="-348.6" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="383.99,-305 383.99,-337.8 476.24,-337.8 476.24,-305 383.99,-305"/>
+<text xml:space="preserve" text-anchor="start" x="391.99" y="-315.8" font-family="Arial" font-size="14.00">customer_id</text>
+<polygon fill="none" stroke="black" points="476.24,-305 476.24,-337.8 571.61,-337.8 571.61,-305 476.24,-305"/>
+<text xml:space="preserve" text-anchor="start" x="484.24" y="-315.8" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="571.61,-305 571.61,-337.8 630.4,-337.8 630.4,-305 571.61,-305"/>
+<text xml:space="preserve" text-anchor="start" x="579.61" y="-315.8" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="383.99,-272.2 383.99,-305 476.24,-305 476.24,-272.2 383.99,-272.2"/>
+<text xml:space="preserve" text-anchor="start" x="391.99" y="-283" font-family="Arial" font-size="14.00">name</text>
+<polygon fill="none" stroke="black" points="476.24,-272.2 476.24,-305 571.61,-305 571.61,-272.2 476.24,-272.2"/>
+<text xml:space="preserve" text-anchor="start" x="484.24" y="-283" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="571.61,-272.2 571.61,-305 630.4,-305 630.4,-272.2 571.61,-272.2"/>
+<polygon fill="none" stroke="black" points="383.99,-239.4 383.99,-272.2 476.24,-272.2 476.24,-239.4 383.99,-239.4"/>
+<text xml:space="preserve" text-anchor="start" x="391.99" y="-250.2" font-family="Arial" font-size="14.00">created_at</text>
+<polygon fill="none" stroke="black" points="476.24,-239.4 476.24,-272.2 571.61,-272.2 571.61,-239.4 476.24,-239.4"/>
+<text xml:space="preserve" text-anchor="start" x="484.24" y="-250.2" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="571.61,-239.4 571.61,-272.2 630.4,-272.2 630.4,-239.4 571.61,-239.4"/>
+<text xml:space="preserve" text-anchor="start" x="579.61" y="-250.2" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="383.99,-206.6 383.99,-239.4 476.24,-239.4 476.24,-206.6 383.99,-206.6"/>
+<text xml:space="preserve" text-anchor="start" x="391.99" y="-217.4" font-family="Arial" font-size="14.00">updated_at</text>
+<polygon fill="none" stroke="black" points="476.24,-206.6 476.24,-239.4 571.61,-239.4 571.61,-206.6 476.24,-206.6"/>
+<text xml:space="preserve" text-anchor="start" x="484.24" y="-217.4" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="571.61,-206.6 571.61,-239.4 630.4,-239.4 630.4,-206.6 571.61,-206.6"/>
+<text xml:space="preserve" text-anchor="start" x="579.61" y="-217.4" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- users&#45;&gt;bouquet_drafts -->
+<g id="edge13" class="edge">
+<title>users:e&#45;&gt;bouquet_drafts:w</title>
+<g id="a_edge13"><a xlink:title="users.id &#45;&gt; bouquet_drafts.customer_id">
+<path fill="none" stroke="#64748b" d="M270.54,-1477.6C270.54,-1477.6 364.54,-425 364.54,-425 364.54,-425 382.99,-321.4 382.99,-321.4"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="389.42" y="-342.56" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="262.03" y="-1451.09" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- orders -->
+<g id="node14" class="node">
+<title>orders</title>
+<polygon fill="#dbeafe" stroke="none" points="364.54,-1439.2 364.54,-1472 649.85,-1472 649.85,-1439.2 364.54,-1439.2"/>
+<polygon fill="none" stroke="black" points="364.54,-1439.2 364.54,-1472 649.85,-1472 649.85,-1439.2 364.54,-1439.2"/>
+<text xml:space="preserve" text-anchor="start" x="485.41" y="-1452.4" font-family="Arial" font-weight="bold" font-size="14.00">orders</text>
+<polygon fill="none" stroke="black" points="364.54,-1406.4 364.54,-1439.2 486.37,-1439.2 486.37,-1406.4 364.54,-1406.4"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1417.2" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="486.37,-1406.4 486.37,-1439.2 588.74,-1439.2 588.74,-1406.4 486.37,-1406.4"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1417.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="588.74,-1406.4 588.74,-1439.2 649.85,-1439.2 649.85,-1406.4 588.74,-1406.4"/>
+<text xml:space="preserve" text-anchor="start" x="596.74" y="-1417.2" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="364.54,-1373.6 364.54,-1406.4 486.37,-1406.4 486.37,-1373.6 364.54,-1373.6"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1384.4" font-family="Arial" font-size="14.00">number</text>
+<polygon fill="none" stroke="black" points="486.37,-1373.6 486.37,-1406.4 588.74,-1406.4 588.74,-1373.6 486.37,-1373.6"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1384.4" font-family="Arial" font-size="14.00">varchar(32)</text>
+<polygon fill="none" stroke="black" points="588.74,-1373.6 588.74,-1406.4 649.85,-1406.4 649.85,-1373.6 588.74,-1373.6"/>
+<text xml:space="preserve" text-anchor="start" x="596.74" y="-1384.4" font-family="Arial" font-size="14.00">UQ NN</text>
+<polygon fill="none" stroke="black" points="364.54,-1340.8 364.54,-1373.6 486.37,-1373.6 486.37,-1340.8 364.54,-1340.8"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1351.6" font-family="Arial" font-size="14.00">customer_id</text>
+<polygon fill="none" stroke="black" points="486.37,-1340.8 486.37,-1373.6 588.74,-1373.6 588.74,-1340.8 486.37,-1340.8"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1351.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="588.74,-1340.8 588.74,-1373.6 649.85,-1373.6 649.85,-1340.8 588.74,-1340.8"/>
+<text xml:space="preserve" text-anchor="start" x="596.74" y="-1351.6" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="364.54,-1308 364.54,-1340.8 486.37,-1340.8 486.37,-1308 364.54,-1308"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1318.8" font-family="Arial" font-size="14.00">status</text>
+<polygon fill="none" stroke="black" points="486.37,-1308 486.37,-1340.8 588.74,-1340.8 588.74,-1308 486.37,-1308"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1318.8" font-family="Arial" font-size="14.00">order_status</text>
+<polygon fill="none" stroke="black" points="588.74,-1308 588.74,-1340.8 649.85,-1340.8 649.85,-1308 588.74,-1308"/>
+<text xml:space="preserve" text-anchor="start" x="596.74" y="-1318.8" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="364.54,-1275.2 364.54,-1308 486.37,-1308 486.37,-1275.2 364.54,-1275.2"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1286" font-family="Arial" font-size="14.00">fulfillment_type</text>
+<polygon fill="none" stroke="black" points="486.37,-1275.2 486.37,-1308 588.74,-1308 588.74,-1275.2 486.37,-1275.2"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1286" font-family="Arial" font-size="14.00">varchar(20)</text>
+<polygon fill="none" stroke="black" points="588.74,-1275.2 588.74,-1308 649.85,-1308 649.85,-1275.2 588.74,-1275.2"/>
+<text xml:space="preserve" text-anchor="start" x="596.74" y="-1286" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="364.54,-1242.4 364.54,-1275.2 486.37,-1275.2 486.37,-1242.4 364.54,-1242.4"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1253.2" font-family="Arial" font-size="14.00">delivery_address</text>
+<polygon fill="none" stroke="black" points="486.37,-1242.4 486.37,-1275.2 588.74,-1275.2 588.74,-1242.4 486.37,-1242.4"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1253.2" font-family="Arial" font-size="14.00">text</text>
+<polygon fill="none" stroke="black" points="588.74,-1242.4 588.74,-1275.2 649.85,-1275.2 649.85,-1242.4 588.74,-1242.4"/>
+<polygon fill="none" stroke="black" points="364.54,-1209.6 364.54,-1242.4 486.37,-1242.4 486.37,-1209.6 364.54,-1209.6"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1220.4" font-family="Arial" font-size="14.00">scheduled_at</text>
+<polygon fill="none" stroke="black" points="486.37,-1209.6 486.37,-1242.4 588.74,-1242.4 588.74,-1209.6 486.37,-1209.6"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1220.4" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="588.74,-1209.6 588.74,-1242.4 649.85,-1242.4 649.85,-1209.6 588.74,-1209.6"/>
+<polygon fill="none" stroke="black" points="364.54,-1176.8 364.54,-1209.6 486.37,-1209.6 486.37,-1176.8 364.54,-1176.8"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1187.6" font-family="Arial" font-size="14.00">delivery_fee</text>
+<polygon fill="none" stroke="black" points="486.37,-1176.8 486.37,-1209.6 588.74,-1209.6 588.74,-1176.8 486.37,-1176.8"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1187.6" font-family="Arial" font-size="14.00">numeric(12,2)</text>
+<polygon fill="none" stroke="black" points="588.74,-1176.8 588.74,-1209.6 649.85,-1209.6 649.85,-1176.8 588.74,-1176.8"/>
+<text xml:space="preserve" text-anchor="start" x="596.74" y="-1187.6" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="364.54,-1144 364.54,-1176.8 486.37,-1176.8 486.37,-1144 364.54,-1144"/>
+<text xml:space="preserve" text-anchor="start" x="372.54" y="-1154.8" font-family="Arial" font-size="14.00">created_at</text>
+<polygon fill="none" stroke="black" points="486.37,-1144 486.37,-1176.8 588.74,-1176.8 588.74,-1144 486.37,-1144"/>
+<text xml:space="preserve" text-anchor="start" x="494.37" y="-1154.8" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="588.74,-1144 588.74,-1176.8 649.85,-1176.8 649.85,-1144 588.74,-1144"/>
+<text xml:space="preserve" text-anchor="start" x="596.74" y="-1154.8" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- users&#45;&gt;orders -->
+<g id="edge16" class="edge">
+<title>users:e&#45;&gt;orders:w</title>
+<g id="a_edge16"><a xlink:title="users.id &#45;&gt; orders.customer_id">
+<path fill="none" stroke="#64748b" d="M270.54,-1477.6C270.54,-1477.6 364.54,-1357.2 364.54,-1357.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="358.92" y="-1378.56" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="276.15" y="-1450.24" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- order_status_history -->
+<g id="node17" class="node">
+<title>order_status_history</title>
+<polygon fill="#dbeafe" stroke="none" points="787.03,-1859.4 787.03,-1892.2 1031.92,-1892.2 1031.92,-1859.4 787.03,-1859.4"/>
+<polygon fill="none" stroke="black" points="787.03,-1859.4 787.03,-1892.2 1031.92,-1892.2 1031.92,-1859.4 787.03,-1859.4"/>
+<text xml:space="preserve" text-anchor="start" x="839.84" y="-1872.6" font-family="Arial" font-weight="bold" font-size="14.00">order_status_history</text>
+<polygon fill="none" stroke="black" points="787.03,-1826.6 787.03,-1859.4 879.32,-1859.4 879.32,-1826.6 787.03,-1826.6"/>
+<text xml:space="preserve" text-anchor="start" x="795.03" y="-1837.4" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="879.32,-1826.6 879.32,-1859.4 973.14,-1859.4 973.14,-1826.6 879.32,-1826.6"/>
+<text xml:space="preserve" text-anchor="start" x="887.32" y="-1837.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="973.14,-1826.6 973.14,-1859.4 1031.92,-1859.4 1031.92,-1826.6 973.14,-1826.6"/>
+<text xml:space="preserve" text-anchor="start" x="981.14" y="-1837.4" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="787.03,-1793.8 787.03,-1826.6 879.32,-1826.6 879.32,-1793.8 787.03,-1793.8"/>
+<text xml:space="preserve" text-anchor="start" x="795.03" y="-1804.6" font-family="Arial" font-size="14.00">order_id</text>
+<polygon fill="none" stroke="black" points="879.32,-1793.8 879.32,-1826.6 973.14,-1826.6 973.14,-1793.8 879.32,-1793.8"/>
+<text xml:space="preserve" text-anchor="start" x="887.32" y="-1804.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="973.14,-1793.8 973.14,-1826.6 1031.92,-1826.6 1031.92,-1793.8 973.14,-1793.8"/>
+<text xml:space="preserve" text-anchor="start" x="981.14" y="-1804.6" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="787.03,-1761 787.03,-1793.8 879.32,-1793.8 879.32,-1761 787.03,-1761"/>
+<text xml:space="preserve" text-anchor="start" x="795.03" y="-1771.8" font-family="Arial" font-size="14.00">from_status</text>
+<polygon fill="none" stroke="black" points="879.32,-1761 879.32,-1793.8 973.14,-1793.8 973.14,-1761 879.32,-1761"/>
+<text xml:space="preserve" text-anchor="start" x="887.32" y="-1771.8" font-family="Arial" font-size="14.00">order_status</text>
+<polygon fill="none" stroke="black" points="973.14,-1761 973.14,-1793.8 1031.92,-1793.8 1031.92,-1761 973.14,-1761"/>
+<polygon fill="none" stroke="black" points="787.03,-1728.2 787.03,-1761 879.32,-1761 879.32,-1728.2 787.03,-1728.2"/>
+<text xml:space="preserve" text-anchor="start" x="795.03" y="-1739" font-family="Arial" font-size="14.00">to_status</text>
+<polygon fill="none" stroke="black" points="879.32,-1728.2 879.32,-1761 973.14,-1761 973.14,-1728.2 879.32,-1728.2"/>
+<text xml:space="preserve" text-anchor="start" x="887.32" y="-1739" font-family="Arial" font-size="14.00">order_status</text>
+<polygon fill="none" stroke="black" points="973.14,-1728.2 973.14,-1761 1031.92,-1761 1031.92,-1728.2 973.14,-1728.2"/>
+<text xml:space="preserve" text-anchor="start" x="981.14" y="-1739" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="787.03,-1695.4 787.03,-1728.2 879.32,-1728.2 879.32,-1695.4 787.03,-1695.4"/>
+<text xml:space="preserve" text-anchor="start" x="795.03" y="-1706.2" font-family="Arial" font-size="14.00">changed_by</text>
+<polygon fill="none" stroke="black" points="879.32,-1695.4 879.32,-1728.2 973.14,-1728.2 973.14,-1695.4 879.32,-1695.4"/>
+<text xml:space="preserve" text-anchor="start" x="887.32" y="-1706.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="973.14,-1695.4 973.14,-1728.2 1031.92,-1728.2 1031.92,-1695.4 973.14,-1695.4"/>
+<text xml:space="preserve" text-anchor="start" x="981.14" y="-1706.2" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="787.03,-1662.6 787.03,-1695.4 879.32,-1695.4 879.32,-1662.6 787.03,-1662.6"/>
+<text xml:space="preserve" text-anchor="start" x="795.03" y="-1673.4" font-family="Arial" font-size="14.00">comment</text>
+<polygon fill="none" stroke="black" points="879.32,-1662.6 879.32,-1695.4 973.14,-1695.4 973.14,-1662.6 879.32,-1662.6"/>
+<text xml:space="preserve" text-anchor="start" x="887.32" y="-1673.4" font-family="Arial" font-size="14.00">text</text>
+<polygon fill="none" stroke="black" points="973.14,-1662.6 973.14,-1695.4 1031.92,-1695.4 1031.92,-1662.6 973.14,-1662.6"/>
+<polygon fill="none" stroke="black" points="787.03,-1629.8 787.03,-1662.6 879.32,-1662.6 879.32,-1629.8 787.03,-1629.8"/>
+<text xml:space="preserve" text-anchor="start" x="795.03" y="-1640.6" font-family="Arial" font-size="14.00">created_at</text>
+<polygon fill="none" stroke="black" points="879.32,-1629.8 879.32,-1662.6 973.14,-1662.6 973.14,-1629.8 879.32,-1629.8"/>
+<text xml:space="preserve" text-anchor="start" x="887.32" y="-1640.6" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="973.14,-1629.8 973.14,-1662.6 1031.92,-1662.6 1031.92,-1629.8 973.14,-1629.8"/>
+<text xml:space="preserve" text-anchor="start" x="981.14" y="-1640.6" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- users&#45;&gt;order_status_history -->
+<g id="edge23" class="edge">
+<title>users:e&#45;&gt;order_status_history:w</title>
+<g id="a_edge23"><a xlink:title="users.id &#45;&gt; order_status_history.changed_by">
+<path fill="none" stroke="#64748b" d="M270.54,-1477.6C270.54,-1477.6 364.54,-1668 364.54,-1668 364.54,-1668 786.03,-1711.8 786.03,-1711.8"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="762.4" y="-1716.97" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="290.04" y="-1490.24" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- roles -->
+<g id="node2" class="node">
+<title>roles</title>
+<polygon fill="#dbeafe" stroke="none" points="31.52,-1809.8 31.52,-1842.6 239.02,-1842.6 239.02,-1809.8 31.52,-1809.8"/>
+<polygon fill="none" stroke="black" points="31.52,-1809.8 31.52,-1842.6 239.02,-1842.6 239.02,-1809.8 31.52,-1809.8"/>
+<text xml:space="preserve" text-anchor="start" x="118.54" y="-1823" font-family="Arial" font-weight="bold" font-size="14.00">roles</text>
+<polygon fill="none" stroke="black" points="31.52,-1777 31.52,-1809.8 82.54,-1809.8 82.54,-1777 31.52,-1777"/>
+<text xml:space="preserve" text-anchor="start" x="39.52" y="-1787.8" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="82.54,-1777 82.54,-1809.8 177.91,-1809.8 177.91,-1777 82.54,-1777"/>
+<text xml:space="preserve" text-anchor="start" x="90.54" y="-1787.8" font-family="Arial" font-size="14.00">smallint</text>
+<polygon fill="none" stroke="black" points="177.91,-1777 177.91,-1809.8 239.02,-1809.8 239.02,-1777 177.91,-1777"/>
+<text xml:space="preserve" text-anchor="start" x="185.91" y="-1787.8" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="31.52,-1744.2 31.52,-1777 82.54,-1777 82.54,-1744.2 31.52,-1744.2"/>
+<text xml:space="preserve" text-anchor="start" x="39.52" y="-1755" font-family="Arial" font-size="14.00">code</text>
+<polygon fill="none" stroke="black" points="82.54,-1744.2 82.54,-1777 177.91,-1777 177.91,-1744.2 82.54,-1744.2"/>
+<text xml:space="preserve" text-anchor="start" x="90.54" y="-1755" font-family="Arial" font-size="14.00">varchar(40)</text>
+<polygon fill="none" stroke="black" points="177.91,-1744.2 177.91,-1777 239.02,-1777 239.02,-1744.2 177.91,-1744.2"/>
+<text xml:space="preserve" text-anchor="start" x="185.91" y="-1755" font-family="Arial" font-size="14.00">UQ NN</text>
+<polygon fill="none" stroke="black" points="31.52,-1711.4 31.52,-1744.2 82.54,-1744.2 82.54,-1711.4 31.52,-1711.4"/>
+<text xml:space="preserve" text-anchor="start" x="39.52" y="-1722.2" font-family="Arial" font-size="14.00">name</text>
+<polygon fill="none" stroke="black" points="82.54,-1711.4 82.54,-1744.2 177.91,-1744.2 177.91,-1711.4 82.54,-1711.4"/>
+<text xml:space="preserve" text-anchor="start" x="90.54" y="-1722.2" font-family="Arial" font-size="14.00">varchar(100)</text>
+<polygon fill="none" stroke="black" points="177.91,-1711.4 177.91,-1744.2 239.02,-1744.2 239.02,-1711.4 177.91,-1711.4"/>
+<text xml:space="preserve" text-anchor="start" x="185.91" y="-1722.2" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- roles&#45;&gt;user_roles -->
+<g id="edge2" class="edge">
+<title>roles:e&#45;&gt;user_roles:w</title>
+<g id="a_edge2"><a xlink:title="roles.id &#45;&gt; user_roles.role_id">
+<path fill="none" stroke="#64748b" d="M240.02,-1793.4C240.02,-1793.4 403.22,-1793.2 403.22,-1793.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="380.58" y="-1800.79" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="262.66" y="-1779.81" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- categories -->
+<g id="node5" class="node">
+<title>categories</title>
+<polygon fill="#dbeafe" stroke="none" points="31.52,-741.4 31.52,-774.2 239.02,-774.2 239.02,-741.4 31.52,-741.4"/>
+<polygon fill="none" stroke="black" points="31.52,-741.4 31.52,-774.2 239.02,-774.2 239.02,-741.4 31.52,-741.4"/>
+<text xml:space="preserve" text-anchor="start" x="100.25" y="-754.6" font-family="Arial" font-weight="bold" font-size="14.00">categories</text>
+<polygon fill="none" stroke="black" points="31.52,-708.6 31.52,-741.4 82.54,-741.4 82.54,-708.6 31.52,-708.6"/>
+<text xml:space="preserve" text-anchor="start" x="39.52" y="-719.4" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="82.54,-708.6 82.54,-741.4 177.91,-741.4 177.91,-708.6 82.54,-708.6"/>
+<text xml:space="preserve" text-anchor="start" x="90.54" y="-719.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="177.91,-708.6 177.91,-741.4 239.02,-741.4 239.02,-708.6 177.91,-708.6"/>
+<text xml:space="preserve" text-anchor="start" x="185.91" y="-719.4" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="31.52,-675.8 31.52,-708.6 82.54,-708.6 82.54,-675.8 31.52,-675.8"/>
+<text xml:space="preserve" text-anchor="start" x="39.52" y="-686.6" font-family="Arial" font-size="14.00">name</text>
+<polygon fill="none" stroke="black" points="82.54,-675.8 82.54,-708.6 177.91,-708.6 177.91,-675.8 82.54,-675.8"/>
+<text xml:space="preserve" text-anchor="start" x="90.54" y="-686.6" font-family="Arial" font-size="14.00">varchar(100)</text>
+<polygon fill="none" stroke="black" points="177.91,-675.8 177.91,-708.6 239.02,-708.6 239.02,-675.8 177.91,-675.8"/>
+<text xml:space="preserve" text-anchor="start" x="185.91" y="-686.6" font-family="Arial" font-size="14.00">UQ NN</text>
+</g>
+<!-- products -->
+<g id="node6" class="node">
+<title>products</title>
+<polygon fill="#dbeafe" stroke="none" points="375.82,-774.6 375.82,-807.4 638.56,-807.4 638.56,-774.6 375.82,-774.6"/>
+<polygon fill="none" stroke="black" points="375.82,-774.6 375.82,-807.4 638.56,-807.4 638.56,-774.6 375.82,-774.6"/>
+<text xml:space="preserve" text-anchor="start" x="477.25" y="-787.8" font-family="Arial" font-weight="bold" font-size="14.00">products</text>
+<polygon fill="none" stroke="black" points="375.82,-741.8 375.82,-774.6 475.09,-774.6 475.09,-741.8 375.82,-741.8"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-752.6" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="475.09,-741.8 475.09,-774.6 577.45,-774.6 577.45,-741.8 475.09,-741.8"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-752.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="577.45,-741.8 577.45,-774.6 638.56,-774.6 638.56,-741.8 577.45,-741.8"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-752.6" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="375.82,-709 375.82,-741.8 475.09,-741.8 475.09,-709 375.82,-709"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-719.8" font-family="Arial" font-size="14.00">category_id</text>
+<polygon fill="none" stroke="black" points="475.09,-709 475.09,-741.8 577.45,-741.8 577.45,-709 475.09,-709"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-719.8" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="577.45,-709 577.45,-741.8 638.56,-741.8 638.56,-709 577.45,-709"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-719.8" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="375.82,-676.2 375.82,-709 475.09,-709 475.09,-676.2 375.82,-676.2"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-687" font-family="Arial" font-size="14.00">sku</text>
+<polygon fill="none" stroke="black" points="475.09,-676.2 475.09,-709 577.45,-709 577.45,-676.2 475.09,-676.2"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-687" font-family="Arial" font-size="14.00">varchar(64)</text>
+<polygon fill="none" stroke="black" points="577.45,-676.2 577.45,-709 638.56,-709 638.56,-676.2 577.45,-676.2"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-687" font-family="Arial" font-size="14.00">UQ NN</text>
+<polygon fill="none" stroke="black" points="375.82,-643.4 375.82,-676.2 475.09,-676.2 475.09,-643.4 375.82,-643.4"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-654.2" font-family="Arial" font-size="14.00">name</text>
+<polygon fill="none" stroke="black" points="475.09,-643.4 475.09,-676.2 577.45,-676.2 577.45,-643.4 475.09,-643.4"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-654.2" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="577.45,-643.4 577.45,-676.2 638.56,-676.2 638.56,-643.4 577.45,-643.4"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-654.2" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="375.82,-610.6 375.82,-643.4 475.09,-643.4 475.09,-610.6 375.82,-610.6"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-621.4" font-family="Arial" font-size="14.00">product_type</text>
+<polygon fill="none" stroke="black" points="475.09,-610.6 475.09,-643.4 577.45,-643.4 577.45,-610.6 475.09,-610.6"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-621.4" font-family="Arial" font-size="14.00">product_type</text>
+<polygon fill="none" stroke="black" points="577.45,-610.6 577.45,-643.4 638.56,-643.4 638.56,-610.6 577.45,-610.6"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-621.4" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="375.82,-577.8 375.82,-610.6 475.09,-610.6 475.09,-577.8 375.82,-577.8"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-588.6" font-family="Arial" font-size="14.00">unit</text>
+<polygon fill="none" stroke="black" points="475.09,-577.8 475.09,-610.6 577.45,-610.6 577.45,-577.8 475.09,-577.8"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-588.6" font-family="Arial" font-size="14.00">varchar(20)</text>
+<polygon fill="none" stroke="black" points="577.45,-577.8 577.45,-610.6 638.56,-610.6 638.56,-577.8 577.45,-577.8"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-588.6" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="375.82,-545 375.82,-577.8 475.09,-577.8 475.09,-545 375.82,-545"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-555.8" font-family="Arial" font-size="14.00">price</text>
+<polygon fill="none" stroke="black" points="475.09,-545 475.09,-577.8 577.45,-577.8 577.45,-545 475.09,-545"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-555.8" font-family="Arial" font-size="14.00">numeric(12,2)</text>
+<polygon fill="none" stroke="black" points="577.45,-545 577.45,-577.8 638.56,-577.8 638.56,-545 577.45,-545"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-555.8" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="375.82,-512.2 375.82,-545 475.09,-545 475.09,-512.2 375.82,-512.2"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-523" font-family="Arial" font-size="14.00">min_quantity</text>
+<polygon fill="none" stroke="black" points="475.09,-512.2 475.09,-545 577.45,-545 577.45,-512.2 475.09,-512.2"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-523" font-family="Arial" font-size="14.00">numeric(10,3)</text>
+<polygon fill="none" stroke="black" points="577.45,-512.2 577.45,-545 638.56,-545 638.56,-512.2 577.45,-512.2"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-523" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="375.82,-479.4 375.82,-512.2 475.09,-512.2 475.09,-479.4 375.82,-479.4"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-490.2" font-family="Arial" font-size="14.00">max_quantity</text>
+<polygon fill="none" stroke="black" points="475.09,-479.4 475.09,-512.2 577.45,-512.2 577.45,-479.4 475.09,-479.4"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-490.2" font-family="Arial" font-size="14.00">numeric(10,3)</text>
+<polygon fill="none" stroke="black" points="577.45,-479.4 577.45,-512.2 638.56,-512.2 638.56,-479.4 577.45,-479.4"/>
+<polygon fill="none" stroke="black" points="375.82,-446.6 375.82,-479.4 475.09,-479.4 475.09,-446.6 375.82,-446.6"/>
+<text xml:space="preserve" text-anchor="start" x="383.82" y="-457.4" font-family="Arial" font-size="14.00">is_active</text>
+<polygon fill="none" stroke="black" points="475.09,-446.6 475.09,-479.4 577.45,-479.4 577.45,-446.6 475.09,-446.6"/>
+<text xml:space="preserve" text-anchor="start" x="483.09" y="-457.4" font-family="Arial" font-size="14.00">boolean</text>
+<polygon fill="none" stroke="black" points="577.45,-446.6 577.45,-479.4 638.56,-479.4 638.56,-446.6 577.45,-446.6"/>
+<text xml:space="preserve" text-anchor="start" x="585.45" y="-457.4" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- categories&#45;&gt;products -->
+<g id="edge4" class="edge">
+<title>categories:e&#45;&gt;products:w</title>
+<g id="a_edge4"><a xlink:title="categories.id &#45;&gt; products.category_id">
+<path fill="none" stroke="#64748b" d="M240.02,-725C240.02,-725 374.82,-725.4 374.82,-725.4"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="352.13" y="-732.9" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="262.71" y="-711.5" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- stock_balances -->
+<g id="node8" class="node">
+<title>stock_balances</title>
+<polygon fill="#dbeafe" stroke="none" points="766.43,-605.6 766.43,-638.4 1052.53,-638.4 1052.53,-605.6 766.43,-605.6"/>
+<polygon fill="none" stroke="black" points="766.43,-605.6 766.43,-638.4 1052.53,-638.4 1052.53,-605.6 766.43,-605.6"/>
+<text xml:space="preserve" text-anchor="start" x="857.34" y="-618.8" font-family="Arial" font-weight="bold" font-size="14.00">stock_balances</text>
+<polygon fill="none" stroke="black" points="766.43,-572.8 766.43,-605.6 869.6,-605.6 869.6,-572.8 766.43,-572.8"/>
+<text xml:space="preserve" text-anchor="start" x="774.43" y="-583.6" font-family="Arial" font-size="14.00">warehouse_id</text>
+<polygon fill="none" stroke="black" points="869.6,-572.8 869.6,-605.6 971.96,-605.6 971.96,-572.8 869.6,-572.8"/>
+<text xml:space="preserve" text-anchor="start" x="877.6" y="-583.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="971.96,-572.8 971.96,-605.6 1052.53,-605.6 1052.53,-572.8 971.96,-572.8"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-583.6" font-family="Arial" font-size="14.00">PK FK NN</text>
+<polygon fill="none" stroke="black" points="766.43,-540 766.43,-572.8 869.6,-572.8 869.6,-540 766.43,-540"/>
+<text xml:space="preserve" text-anchor="start" x="774.43" y="-550.8" font-family="Arial" font-size="14.00">product_id</text>
+<polygon fill="none" stroke="black" points="869.6,-540 869.6,-572.8 971.96,-572.8 971.96,-540 869.6,-540"/>
+<text xml:space="preserve" text-anchor="start" x="877.6" y="-550.8" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="971.96,-540 971.96,-572.8 1052.53,-572.8 1052.53,-540 971.96,-540"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-550.8" font-family="Arial" font-size="14.00">PK FK NN</text>
+<polygon fill="none" stroke="black" points="766.43,-507.2 766.43,-540 869.6,-540 869.6,-507.2 766.43,-507.2"/>
+<text xml:space="preserve" text-anchor="start" x="774.43" y="-518" font-family="Arial" font-size="14.00">on_hand</text>
+<polygon fill="none" stroke="black" points="869.6,-507.2 869.6,-540 971.96,-540 971.96,-507.2 869.6,-507.2"/>
+<text xml:space="preserve" text-anchor="start" x="877.6" y="-518" font-family="Arial" font-size="14.00">numeric(12,3)</text>
+<polygon fill="none" stroke="black" points="971.96,-507.2 971.96,-540 1052.53,-540 1052.53,-507.2 971.96,-507.2"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-518" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="766.43,-474.4 766.43,-507.2 869.6,-507.2 869.6,-474.4 766.43,-474.4"/>
+<text xml:space="preserve" text-anchor="start" x="774.43" y="-485.2" font-family="Arial" font-size="14.00">reserved</text>
+<polygon fill="none" stroke="black" points="869.6,-474.4 869.6,-507.2 971.96,-507.2 971.96,-474.4 869.6,-474.4"/>
+<text xml:space="preserve" text-anchor="start" x="877.6" y="-485.2" font-family="Arial" font-size="14.00">numeric(12,3)</text>
+<polygon fill="none" stroke="black" points="971.96,-474.4 971.96,-507.2 1052.53,-507.2 1052.53,-474.4 971.96,-474.4"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-485.2" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="766.43,-441.6 766.43,-474.4 869.6,-474.4 869.6,-441.6 766.43,-441.6"/>
+<text xml:space="preserve" text-anchor="start" x="774.43" y="-452.4" font-family="Arial" font-size="14.00">updated_at</text>
+<polygon fill="none" stroke="black" points="869.6,-441.6 869.6,-474.4 971.96,-474.4 971.96,-441.6 869.6,-441.6"/>
+<text xml:space="preserve" text-anchor="start" x="877.6" y="-452.4" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="971.96,-441.6 971.96,-474.4 1052.53,-474.4 1052.53,-441.6 971.96,-441.6"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-452.4" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- products&#45;&gt;stock_balances -->
+<g id="edge6" class="edge">
+<title>products:e&#45;&gt;stock_balances:w</title>
+<g id="a_edge6"><a xlink:title="products.id &#45;&gt; stock_balances.product_id">
+<path fill="none" stroke="#64748b" d="M639.56,-758.2C639.56,-758.2 765.43,-556.4 765.43,-556.4"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="762.4" y="-578.22" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="642.59" y="-730.38" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- products&#45;&gt;stock_movements -->
+<g id="edge8" class="edge">
+<title>products:e&#45;&gt;stock_movements:w</title>
+<g id="a_edge8"><a xlink:title="products.id &#45;&gt; stock_movements.product_id">
+<path fill="none" stroke="#64748b" d="M639.56,-758.2C639.56,-758.2 763.48,-1472.2 763.48,-1472.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="749.19" y="-1448.68" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="653.85" y="-775.72" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- recipe_items -->
+<g id="node11" class="node">
+<title>recipe_items</title>
+<polygon fill="#dbeafe" stroke="none" points="775.38,-145.2 775.38,-178 1043.57,-178 1043.57,-145.2 775.38,-145.2"/>
+<polygon fill="none" stroke="black" points="775.38,-145.2 775.38,-178 1043.57,-178 1043.57,-145.2 775.38,-145.2"/>
+<text xml:space="preserve" text-anchor="start" x="866.67" y="-158.4" font-family="Arial" font-weight="bold" font-size="14.00">recipe_items</text>
+<polygon fill="none" stroke="black" points="775.38,-112.4 775.38,-145.2 860.64,-145.2 860.64,-112.4 775.38,-112.4"/>
+<text xml:space="preserve" text-anchor="start" x="783.38" y="-123.2" font-family="Arial" font-size="14.00">recipe_id</text>
+<polygon fill="none" stroke="black" points="860.64,-112.4 860.64,-145.2 963.01,-145.2 963.01,-112.4 860.64,-112.4"/>
+<text xml:space="preserve" text-anchor="start" x="868.64" y="-123.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="963.01,-112.4 963.01,-145.2 1043.57,-145.2 1043.57,-112.4 963.01,-112.4"/>
+<text xml:space="preserve" text-anchor="start" x="971.01" y="-123.2" font-family="Arial" font-size="14.00">PK FK NN</text>
+<polygon fill="none" stroke="black" points="775.38,-79.6 775.38,-112.4 860.64,-112.4 860.64,-79.6 775.38,-79.6"/>
+<text xml:space="preserve" text-anchor="start" x="783.38" y="-90.4" font-family="Arial" font-size="14.00">product_id</text>
+<polygon fill="none" stroke="black" points="860.64,-79.6 860.64,-112.4 963.01,-112.4 963.01,-79.6 860.64,-79.6"/>
+<text xml:space="preserve" text-anchor="start" x="868.64" y="-90.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="963.01,-79.6 963.01,-112.4 1043.57,-112.4 1043.57,-79.6 963.01,-79.6"/>
+<text xml:space="preserve" text-anchor="start" x="971.01" y="-90.4" font-family="Arial" font-size="14.00">PK FK NN</text>
+<polygon fill="none" stroke="black" points="775.38,-46.8 775.38,-79.6 860.64,-79.6 860.64,-46.8 775.38,-46.8"/>
+<text xml:space="preserve" text-anchor="start" x="783.38" y="-57.6" font-family="Arial" font-size="14.00">quantity</text>
+<polygon fill="none" stroke="black" points="860.64,-46.8 860.64,-79.6 963.01,-79.6 963.01,-46.8 860.64,-46.8"/>
+<text xml:space="preserve" text-anchor="start" x="868.64" y="-57.6" font-family="Arial" font-size="14.00">numeric(10,3)</text>
+<polygon fill="none" stroke="black" points="963.01,-46.8 963.01,-79.6 1043.57,-79.6 1043.57,-46.8 963.01,-46.8"/>
+<text xml:space="preserve" text-anchor="start" x="971.01" y="-57.6" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="775.38,-14 775.38,-46.8 860.64,-46.8 860.64,-14 775.38,-14"/>
+<text xml:space="preserve" text-anchor="start" x="783.38" y="-24.8" font-family="Arial" font-size="14.00">is_required</text>
+<polygon fill="none" stroke="black" points="860.64,-14 860.64,-46.8 963.01,-46.8 963.01,-14 860.64,-14"/>
+<text xml:space="preserve" text-anchor="start" x="868.64" y="-24.8" font-family="Arial" font-size="14.00">boolean</text>
+<polygon fill="none" stroke="black" points="963.01,-14 963.01,-46.8 1043.57,-46.8 1043.57,-14 963.01,-14"/>
+<text xml:space="preserve" text-anchor="start" x="971.01" y="-24.8" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- products&#45;&gt;recipe_items -->
+<g id="edge12" class="edge">
+<title>products:e&#45;&gt;recipe_items:w</title>
+<g id="a_edge12"><a xlink:title="products.id &#45;&gt; recipe_items.product_id">
+<path fill="none" stroke="#64748b" d="M639.56,-758.2C639.56,-758.2 743.85,-213 743.85,-213 743.85,-213 774.38,-96 774.38,-96"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="778.88" y="-117.59" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="633.44" y="-730.96" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- bouquet_draft_items -->
+<g id="node13" class="node">
+<title>bouquet_draft_items</title>
+<polygon fill="#dbeafe" stroke="none" points="788.21,-366.2 788.21,-399 1030.74,-399 1030.74,-366.2 788.21,-366.2"/>
+<polygon fill="none" stroke="black" points="788.21,-366.2 788.21,-399 1030.74,-399 1030.74,-366.2 788.21,-366.2"/>
+<text xml:space="preserve" text-anchor="start" x="840.25" y="-379.4" font-family="Arial" font-weight="bold" font-size="14.00">bouquet_draft_items</text>
+<polygon fill="none" stroke="black" points="788.21,-333.4 788.21,-366.2 869.59,-366.2 869.59,-333.4 788.21,-333.4"/>
+<text xml:space="preserve" text-anchor="start" x="796.21" y="-344.2" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="869.59,-333.4 869.59,-366.2 971.96,-366.2 971.96,-333.4 869.59,-333.4"/>
+<text xml:space="preserve" text-anchor="start" x="877.59" y="-344.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="971.96,-333.4 971.96,-366.2 1030.74,-366.2 1030.74,-333.4 971.96,-333.4"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-344.2" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="788.21,-300.6 788.21,-333.4 869.59,-333.4 869.59,-300.6 788.21,-300.6"/>
+<text xml:space="preserve" text-anchor="start" x="796.21" y="-311.4" font-family="Arial" font-size="14.00">draft_id</text>
+<polygon fill="none" stroke="black" points="869.59,-300.6 869.59,-333.4 971.96,-333.4 971.96,-300.6 869.59,-300.6"/>
+<text xml:space="preserve" text-anchor="start" x="877.59" y="-311.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="971.96,-300.6 971.96,-333.4 1030.74,-333.4 1030.74,-300.6 971.96,-300.6"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-311.4" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="788.21,-267.8 788.21,-300.6 869.59,-300.6 869.59,-267.8 788.21,-267.8"/>
+<text xml:space="preserve" text-anchor="start" x="796.21" y="-278.6" font-family="Arial" font-size="14.00">product_id</text>
+<polygon fill="none" stroke="black" points="869.59,-267.8 869.59,-300.6 971.96,-300.6 971.96,-267.8 869.59,-267.8"/>
+<text xml:space="preserve" text-anchor="start" x="877.59" y="-278.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="971.96,-267.8 971.96,-300.6 1030.74,-300.6 1030.74,-267.8 971.96,-267.8"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-278.6" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="788.21,-235 788.21,-267.8 869.59,-267.8 869.59,-235 788.21,-235"/>
+<text xml:space="preserve" text-anchor="start" x="796.21" y="-245.8" font-family="Arial" font-size="14.00">quantity</text>
+<polygon fill="none" stroke="black" points="869.59,-235 869.59,-267.8 971.96,-267.8 971.96,-235 869.59,-235"/>
+<text xml:space="preserve" text-anchor="start" x="877.59" y="-245.8" font-family="Arial" font-size="14.00">numeric(10,3)</text>
+<polygon fill="none" stroke="black" points="971.96,-235 971.96,-267.8 1030.74,-267.8 1030.74,-235 971.96,-235"/>
+<text xml:space="preserve" text-anchor="start" x="979.96" y="-245.8" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- products&#45;&gt;bouquet_draft_items -->
+<g id="edge15" class="edge">
+<title>products:e&#45;&gt;bouquet_draft_items:w</title>
+<g id="a_edge15"><a xlink:title="products.id &#45;&gt; bouquet_draft_items.product_id">
+<path fill="none" stroke="#64748b" d="M639.56,-758.2C639.56,-758.2 743.85,-420 743.85,-420 743.85,-420 787.21,-284.2 787.21,-284.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="790.38" y="-306" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="636.14" y="-730.44" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- order_items -->
+<g id="node15" class="node">
+<title>order_items</title>
+<polygon fill="#dbeafe" stroke="none" points="743.85,-878 743.85,-910.8 1075.11,-910.8 1075.11,-878 743.85,-878"/>
+<polygon fill="none" stroke="black" points="743.85,-878 743.85,-910.8 1075.11,-910.8 1075.11,-878 743.85,-878"/>
+<text xml:space="preserve" text-anchor="start" x="869.4" y="-891.2" font-family="Arial" font-weight="bold" font-size="14.00">order_items</text>
+<polygon fill="none" stroke="black" points="743.85,-845.2 743.85,-878 913.96,-878 913.96,-845.2 743.85,-845.2"/>
+<text xml:space="preserve" text-anchor="start" x="751.85" y="-856" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="913.96,-845.2 913.96,-878 1016.32,-878 1016.32,-845.2 913.96,-845.2"/>
+<text xml:space="preserve" text-anchor="start" x="921.96" y="-856" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="1016.32,-845.2 1016.32,-878 1075.11,-878 1075.11,-845.2 1016.32,-845.2"/>
+<text xml:space="preserve" text-anchor="start" x="1024.32" y="-856" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="743.85,-812.4 743.85,-845.2 913.96,-845.2 913.96,-812.4 743.85,-812.4"/>
+<text xml:space="preserve" text-anchor="start" x="751.85" y="-823.2" font-family="Arial" font-size="14.00">order_id</text>
+<polygon fill="none" stroke="black" points="913.96,-812.4 913.96,-845.2 1016.32,-845.2 1016.32,-812.4 913.96,-812.4"/>
+<text xml:space="preserve" text-anchor="start" x="921.96" y="-823.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="1016.32,-812.4 1016.32,-845.2 1075.11,-845.2 1075.11,-812.4 1016.32,-812.4"/>
+<text xml:space="preserve" text-anchor="start" x="1024.32" y="-823.2" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="743.85,-779.6 743.85,-812.4 913.96,-812.4 913.96,-779.6 743.85,-779.6"/>
+<text xml:space="preserve" text-anchor="start" x="751.85" y="-790.4" font-family="Arial" font-size="14.00">product_id</text>
+<polygon fill="none" stroke="black" points="913.96,-779.6 913.96,-812.4 1016.32,-812.4 1016.32,-779.6 913.96,-779.6"/>
+<text xml:space="preserve" text-anchor="start" x="921.96" y="-790.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="1016.32,-779.6 1016.32,-812.4 1075.11,-812.4 1075.11,-779.6 1016.32,-779.6"/>
+<text xml:space="preserve" text-anchor="start" x="1024.32" y="-790.4" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="743.85,-746.8 743.85,-779.6 913.96,-779.6 913.96,-746.8 743.85,-746.8"/>
+<text xml:space="preserve" text-anchor="start" x="751.85" y="-757.6" font-family="Arial" font-size="14.00">product_name_snapshot</text>
+<polygon fill="none" stroke="black" points="913.96,-746.8 913.96,-779.6 1016.32,-779.6 1016.32,-746.8 913.96,-746.8"/>
+<text xml:space="preserve" text-anchor="start" x="921.96" y="-757.6" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="1016.32,-746.8 1016.32,-779.6 1075.11,-779.6 1075.11,-746.8 1016.32,-746.8"/>
+<text xml:space="preserve" text-anchor="start" x="1024.32" y="-757.6" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="743.85,-714 743.85,-746.8 913.96,-746.8 913.96,-714 743.85,-714"/>
+<text xml:space="preserve" text-anchor="start" x="751.85" y="-724.8" font-family="Arial" font-size="14.00">unit_price_snapshot</text>
+<polygon fill="none" stroke="black" points="913.96,-714 913.96,-746.8 1016.32,-746.8 1016.32,-714 913.96,-714"/>
+<text xml:space="preserve" text-anchor="start" x="921.96" y="-724.8" font-family="Arial" font-size="14.00">numeric(12,2)</text>
+<polygon fill="none" stroke="black" points="1016.32,-714 1016.32,-746.8 1075.11,-746.8 1075.11,-714 1016.32,-714"/>
+<text xml:space="preserve" text-anchor="start" x="1024.32" y="-724.8" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="743.85,-681.2 743.85,-714 913.96,-714 913.96,-681.2 743.85,-681.2"/>
+<text xml:space="preserve" text-anchor="start" x="751.85" y="-692" font-family="Arial" font-size="14.00">quantity</text>
+<polygon fill="none" stroke="black" points="913.96,-681.2 913.96,-714 1016.32,-714 1016.32,-681.2 913.96,-681.2"/>
+<text xml:space="preserve" text-anchor="start" x="921.96" y="-692" font-family="Arial" font-size="14.00">numeric(10,3)</text>
+<polygon fill="none" stroke="black" points="1016.32,-681.2 1016.32,-714 1075.11,-714 1075.11,-681.2 1016.32,-681.2"/>
+<text xml:space="preserve" text-anchor="start" x="1024.32" y="-692" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- products&#45;&gt;order_items -->
+<g id="edge18" class="edge">
+<title>products:e&#45;&gt;order_items:w</title>
+<g id="a_edge18"><a xlink:title="products.id &#45;&gt; order_items.product_id">
+<path fill="none" stroke="#64748b" d="M639.56,-758.2C639.56,-758.2 743.85,-796 743.85,-796"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="718.94" y="-795.21" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="664.47" y="-752.99" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- reservations -->
+<g id="node16" class="node">
+<title>reservations</title>
+<polygon fill="#dbeafe" stroke="none" points="777.32,-1183.4 777.32,-1216.2 1041.64,-1216.2 1041.64,-1183.4 777.32,-1183.4"/>
+<polygon fill="none" stroke="black" points="777.32,-1183.4 777.32,-1216.2 1041.64,-1216.2 1041.64,-1183.4 777.32,-1183.4"/>
+<text xml:space="preserve" text-anchor="start" x="867.84" y="-1196.6" font-family="Arial" font-weight="bold" font-size="14.00">reservations</text>
+<polygon fill="none" stroke="black" points="777.32,-1150.6 777.32,-1183.4 880.49,-1183.4 880.49,-1150.6 777.32,-1150.6"/>
+<text xml:space="preserve" text-anchor="start" x="785.32" y="-1161.4" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="880.49,-1150.6 880.49,-1183.4 982.85,-1183.4 982.85,-1150.6 880.49,-1150.6"/>
+<text xml:space="preserve" text-anchor="start" x="888.49" y="-1161.4" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="982.85,-1150.6 982.85,-1183.4 1041.64,-1183.4 1041.64,-1150.6 982.85,-1150.6"/>
+<text xml:space="preserve" text-anchor="start" x="990.85" y="-1161.4" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="777.32,-1117.8 777.32,-1150.6 880.49,-1150.6 880.49,-1117.8 777.32,-1117.8"/>
+<text xml:space="preserve" text-anchor="start" x="785.32" y="-1128.6" font-family="Arial" font-size="14.00">order_id</text>
+<polygon fill="none" stroke="black" points="880.49,-1117.8 880.49,-1150.6 982.85,-1150.6 982.85,-1117.8 880.49,-1117.8"/>
+<text xml:space="preserve" text-anchor="start" x="888.49" y="-1128.6" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="982.85,-1117.8 982.85,-1150.6 1041.64,-1150.6 1041.64,-1117.8 982.85,-1117.8"/>
+<text xml:space="preserve" text-anchor="start" x="990.85" y="-1128.6" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="777.32,-1085 777.32,-1117.8 880.49,-1117.8 880.49,-1085 777.32,-1085"/>
+<text xml:space="preserve" text-anchor="start" x="785.32" y="-1095.8" font-family="Arial" font-size="14.00">warehouse_id</text>
+<polygon fill="none" stroke="black" points="880.49,-1085 880.49,-1117.8 982.85,-1117.8 982.85,-1085 880.49,-1085"/>
+<text xml:space="preserve" text-anchor="start" x="888.49" y="-1095.8" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="982.85,-1085 982.85,-1117.8 1041.64,-1117.8 1041.64,-1085 982.85,-1085"/>
+<text xml:space="preserve" text-anchor="start" x="990.85" y="-1095.8" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="777.32,-1052.2 777.32,-1085 880.49,-1085 880.49,-1052.2 777.32,-1052.2"/>
+<text xml:space="preserve" text-anchor="start" x="785.32" y="-1063" font-family="Arial" font-size="14.00">product_id</text>
+<polygon fill="none" stroke="black" points="880.49,-1052.2 880.49,-1085 982.85,-1085 982.85,-1052.2 880.49,-1052.2"/>
+<text xml:space="preserve" text-anchor="start" x="888.49" y="-1063" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="982.85,-1052.2 982.85,-1085 1041.64,-1085 1041.64,-1052.2 982.85,-1052.2"/>
+<text xml:space="preserve" text-anchor="start" x="990.85" y="-1063" font-family="Arial" font-size="14.00">FK NN</text>
+<polygon fill="none" stroke="black" points="777.32,-1019.4 777.32,-1052.2 880.49,-1052.2 880.49,-1019.4 777.32,-1019.4"/>
+<text xml:space="preserve" text-anchor="start" x="785.32" y="-1030.2" font-family="Arial" font-size="14.00">quantity</text>
+<polygon fill="none" stroke="black" points="880.49,-1019.4 880.49,-1052.2 982.85,-1052.2 982.85,-1019.4 880.49,-1019.4"/>
+<text xml:space="preserve" text-anchor="start" x="888.49" y="-1030.2" font-family="Arial" font-size="14.00">numeric(12,3)</text>
+<polygon fill="none" stroke="black" points="982.85,-1019.4 982.85,-1052.2 1041.64,-1052.2 1041.64,-1019.4 982.85,-1019.4"/>
+<text xml:space="preserve" text-anchor="start" x="990.85" y="-1030.2" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="777.32,-986.6 777.32,-1019.4 880.49,-1019.4 880.49,-986.6 777.32,-986.6"/>
+<text xml:space="preserve" text-anchor="start" x="785.32" y="-997.4" font-family="Arial" font-size="14.00">expires_at</text>
+<polygon fill="none" stroke="black" points="880.49,-986.6 880.49,-1019.4 982.85,-1019.4 982.85,-986.6 880.49,-986.6"/>
+<text xml:space="preserve" text-anchor="start" x="888.49" y="-997.4" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="982.85,-986.6 982.85,-1019.4 1041.64,-1019.4 1041.64,-986.6 982.85,-986.6"/>
+<text xml:space="preserve" text-anchor="start" x="990.85" y="-997.4" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="777.32,-953.8 777.32,-986.6 880.49,-986.6 880.49,-953.8 777.32,-953.8"/>
+<text xml:space="preserve" text-anchor="start" x="785.32" y="-964.6" font-family="Arial" font-size="14.00">released_at</text>
+<polygon fill="none" stroke="black" points="880.49,-953.8 880.49,-986.6 982.85,-986.6 982.85,-953.8 880.49,-953.8"/>
+<text xml:space="preserve" text-anchor="start" x="888.49" y="-964.6" font-family="Arial" font-size="14.00">timestamptz</text>
+<polygon fill="none" stroke="black" points="982.85,-953.8 982.85,-986.6 1041.64,-986.6 1041.64,-953.8 982.85,-953.8"/>
+</g>
+<!-- products&#45;&gt;reservations -->
+<g id="edge21" class="edge">
+<title>products:e&#45;&gt;reservations:w</title>
+<g id="a_edge21"><a xlink:title="products.id &#45;&gt; reservations.product_id">
+<path fill="none" stroke="#64748b" d="M639.56,-758.2C639.56,-758.2 776.32,-1068.6 776.32,-1068.6"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="757.51" y="-1049.13" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="658.37" y="-771.67" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- warehouses -->
+<g id="node7" class="node">
+<title>warehouses</title>
+<polygon fill="#dbeafe" stroke="none" points="394.88,-981.2 394.88,-1014 619.5,-1014 619.5,-981.2 394.88,-981.2"/>
+<polygon fill="none" stroke="black" points="394.88,-981.2 394.88,-1014 619.5,-1014 619.5,-981.2 394.88,-981.2"/>
+<text xml:space="preserve" text-anchor="start" x="466.73" y="-994.4" font-family="Arial" font-weight="bold" font-size="14.00">warehouses</text>
+<polygon fill="none" stroke="black" points="394.88,-948.4 394.88,-981.2 465.35,-981.2 465.35,-948.4 394.88,-948.4"/>
+<text xml:space="preserve" text-anchor="start" x="402.88" y="-959.2" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="465.35,-948.4 465.35,-981.2 560.72,-981.2 560.72,-948.4 465.35,-948.4"/>
+<text xml:space="preserve" text-anchor="start" x="473.35" y="-959.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="560.72,-948.4 560.72,-981.2 619.5,-981.2 619.5,-948.4 560.72,-948.4"/>
+<text xml:space="preserve" text-anchor="start" x="568.72" y="-959.2" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="394.88,-915.6 394.88,-948.4 465.35,-948.4 465.35,-915.6 394.88,-915.6"/>
+<text xml:space="preserve" text-anchor="start" x="402.88" y="-926.4" font-family="Arial" font-size="14.00">name</text>
+<polygon fill="none" stroke="black" points="465.35,-915.6 465.35,-948.4 560.72,-948.4 560.72,-915.6 465.35,-915.6"/>
+<text xml:space="preserve" text-anchor="start" x="473.35" y="-926.4" font-family="Arial" font-size="14.00">varchar(150)</text>
+<polygon fill="none" stroke="black" points="560.72,-915.6 560.72,-948.4 619.5,-948.4 619.5,-915.6 560.72,-915.6"/>
+<text xml:space="preserve" text-anchor="start" x="568.72" y="-926.4" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="394.88,-882.8 394.88,-915.6 465.35,-915.6 465.35,-882.8 394.88,-882.8"/>
+<text xml:space="preserve" text-anchor="start" x="402.88" y="-893.6" font-family="Arial" font-size="14.00">address</text>
+<polygon fill="none" stroke="black" points="465.35,-882.8 465.35,-915.6 560.72,-915.6 560.72,-882.8 465.35,-882.8"/>
+<text xml:space="preserve" text-anchor="start" x="473.35" y="-893.6" font-family="Arial" font-size="14.00">text</text>
+<polygon fill="none" stroke="black" points="560.72,-882.8 560.72,-915.6 619.5,-915.6 619.5,-882.8 560.72,-882.8"/>
+<polygon fill="none" stroke="black" points="394.88,-850 394.88,-882.8 465.35,-882.8 465.35,-850 394.88,-850"/>
+<text xml:space="preserve" text-anchor="start" x="402.88" y="-860.8" font-family="Arial" font-size="14.00">is_active</text>
+<polygon fill="none" stroke="black" points="465.35,-850 465.35,-882.8 560.72,-882.8 560.72,-850 465.35,-850"/>
+<text xml:space="preserve" text-anchor="start" x="473.35" y="-860.8" font-family="Arial" font-size="14.00">boolean</text>
+<polygon fill="none" stroke="black" points="560.72,-850 560.72,-882.8 619.5,-882.8 619.5,-850 560.72,-850"/>
+<text xml:space="preserve" text-anchor="start" x="568.72" y="-860.8" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- warehouses&#45;&gt;stock_balances -->
+<g id="edge5" class="edge">
+<title>warehouses:e&#45;&gt;stock_balances:w</title>
+<g id="a_edge5"><a xlink:title="warehouses.id &#45;&gt; stock_balances.warehouse_id">
+<path fill="none" stroke="#64748b" d="M620.5,-964.8C620.5,-964.8 765.43,-589.2 765.43,-589.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="767.13" y="-611.14" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="618.8" y="-936.86" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- warehouses&#45;&gt;stock_movements -->
+<g id="edge7" class="edge">
+<title>warehouses:e&#45;&gt;stock_movements:w</title>
+<g id="a_edge7"><a xlink:title="warehouses.id &#45;&gt; stock_movements.warehouse_id">
+<path fill="none" stroke="#64748b" d="M620.5,-964.8C620.5,-964.8 649.85,-1047 649.85,-1047 649.85,-1047 763.48,-1505 763.48,-1505"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="747.77" y="-1482.55" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="638.07" y="-979.59" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- warehouses&#45;&gt;reservations -->
+<g id="edge20" class="edge">
+<title>warehouses:e&#45;&gt;reservations:w</title>
+<g id="a_edge20"><a xlink:title="warehouses.id &#45;&gt; reservations.warehouse_id">
+<path fill="none" stroke="#64748b" d="M620.5,-964.8C620.5,-964.8 776.32,-1101.4 776.32,-1101.4"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="752.31" y="-1091.41" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="644.5" y="-968.79" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- bouquet_recipes -->
+<g id="node10" class="node">
+<title>bouquet_recipes</title>
+<polygon fill="#dbeafe" stroke="none" points="388.26,-131.2 388.26,-164 626.12,-164 626.12,-131.2 388.26,-131.2"/>
+<polygon fill="none" stroke="black" points="388.26,-131.2 388.26,-164 626.12,-164 626.12,-131.2 388.26,-131.2"/>
+<text xml:space="preserve" text-anchor="start" x="451.18" y="-144.4" font-family="Arial" font-weight="bold" font-size="14.00">bouquet_recipes</text>
+<polygon fill="none" stroke="black" points="388.26,-98.4 388.26,-131.2 471.97,-131.2 471.97,-98.4 388.26,-98.4"/>
+<text xml:space="preserve" text-anchor="start" x="396.26" y="-109.2" font-family="Arial" font-size="14.00">id</text>
+<polygon fill="none" stroke="black" points="471.97,-98.4 471.97,-131.2 567.33,-131.2 567.33,-98.4 471.97,-98.4"/>
+<text xml:space="preserve" text-anchor="start" x="479.97" y="-109.2" font-family="Arial" font-size="14.00">uuid</text>
+<polygon fill="none" stroke="black" points="567.33,-98.4 567.33,-131.2 626.12,-131.2 626.12,-98.4 567.33,-98.4"/>
+<text xml:space="preserve" text-anchor="start" x="575.33" y="-109.2" font-family="Arial" font-size="14.00">PK NN</text>
+<polygon fill="none" stroke="black" points="388.26,-65.6 388.26,-98.4 471.97,-98.4 471.97,-65.6 388.26,-65.6"/>
+<text xml:space="preserve" text-anchor="start" x="396.26" y="-76.4" font-family="Arial" font-size="14.00">name</text>
+<polygon fill="none" stroke="black" points="471.97,-65.6 471.97,-98.4 567.33,-98.4 567.33,-65.6 471.97,-65.6"/>
+<text xml:space="preserve" text-anchor="start" x="479.97" y="-76.4" font-family="Arial" font-size="14.00">varchar(255)</text>
+<polygon fill="none" stroke="black" points="567.33,-65.6 567.33,-98.4 626.12,-98.4 626.12,-65.6 567.33,-65.6"/>
+<text xml:space="preserve" text-anchor="start" x="575.33" y="-76.4" font-family="Arial" font-size="14.00">NN</text>
+<polygon fill="none" stroke="black" points="388.26,-32.8 388.26,-65.6 471.97,-65.6 471.97,-32.8 388.26,-32.8"/>
+<text xml:space="preserve" text-anchor="start" x="396.26" y="-43.6" font-family="Arial" font-size="14.00">description</text>
+<polygon fill="none" stroke="black" points="471.97,-32.8 471.97,-65.6 567.33,-65.6 567.33,-32.8 471.97,-32.8"/>
+<text xml:space="preserve" text-anchor="start" x="479.97" y="-43.6" font-family="Arial" font-size="14.00">text</text>
+<polygon fill="none" stroke="black" points="567.33,-32.8 567.33,-65.6 626.12,-65.6 626.12,-32.8 567.33,-32.8"/>
+<polygon fill="none" stroke="black" points="388.26,0 388.26,-32.8 471.97,-32.8 471.97,0 388.26,0"/>
+<text xml:space="preserve" text-anchor="start" x="396.26" y="-10.8" font-family="Arial" font-size="14.00">is_active</text>
+<polygon fill="none" stroke="black" points="471.97,0 471.97,-32.8 567.33,-32.8 567.33,0 471.97,0"/>
+<text xml:space="preserve" text-anchor="start" x="479.97" y="-10.8" font-family="Arial" font-size="14.00">boolean</text>
+<polygon fill="none" stroke="black" points="567.33,0 567.33,-32.8 626.12,-32.8 626.12,0 567.33,0"/>
+<text xml:space="preserve" text-anchor="start" x="575.33" y="-10.8" font-family="Arial" font-size="14.00">NN</text>
+</g>
+<!-- bouquet_recipes&#45;&gt;recipe_items -->
+<g id="edge11" class="edge">
+<title>bouquet_recipes:e&#45;&gt;recipe_items:w</title>
+<g id="a_edge11"><a xlink:title="bouquet_recipes.id &#45;&gt; recipe_items.recipe_id">
+<path fill="none" stroke="#64748b" d="M627.12,-114.8C627.12,-114.8 774.38,-128.8 774.38,-128.8"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="750.82" y="-134.17" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="650.68" y="-103.43" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- bouquet_drafts&#45;&gt;bouquet_draft_items -->
+<g id="edge14" class="edge">
+<title>bouquet_drafts:e&#45;&gt;bouquet_draft_items:w</title>
+<g id="a_edge14"><a xlink:title="bouquet_drafts.id &#45;&gt; bouquet_draft_items.draft_id">
+<path fill="none" stroke="#64748b" d="M631.4,-354.2C631.4,-354.2 787.21,-317 787.21,-317"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="767.63" y="-329.54" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="650.98" y="-335.66" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- orders&#45;&gt;stock_movements -->
+<g id="edge9" class="edge">
+<title>orders:e&#45;&gt;stock_movements:w</title>
+<g id="a_edge9"><a xlink:title="orders.id &#45;&gt; stock_movements.order_id">
+<path fill="none" stroke="#64748b" d="M649.85,-1422.8C649.85,-1422.8 763.48,-1341 763.48,-1341"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="751.26" y="-1359.81" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="662.06" y="-1397.99" font-family="Arial" font-size="10.00">0..1</text>
+</g>
+<!-- orders&#45;&gt;order_items -->
+<g id="edge17" class="edge">
+<title>orders:e&#45;&gt;order_items:w</title>
+<g id="a_edge17"><a xlink:title="orders.id &#45;&gt; order_items.order_id">
+<path fill="none" stroke="#64748b" d="M649.85,-1422.8C649.85,-1422.8 743.85,-828.8 743.85,-828.8"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="750.74" y="-849.83" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="642.95" y="-1395.77" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- orders&#45;&gt;reservations -->
+<g id="edge19" class="edge">
+<title>orders:e&#45;&gt;reservations:w</title>
+<g id="a_edge19"><a xlink:title="orders.id &#45;&gt; reservations.order_id">
+<path fill="none" stroke="#64748b" d="M649.85,-1422.8C649.85,-1422.8 776.32,-1134.2 776.32,-1134.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="776.9" y="-1156.19" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="649.26" y="-1394.81" font-family="Arial" font-size="10.00">1</text>
+</g>
+<!-- orders&#45;&gt;order_status_history -->
+<g id="edge22" class="edge">
+<title>orders:e&#45;&gt;order_status_history:w</title>
+<g id="a_edge22"><a xlink:title="orders.id &#45;&gt; order_status_history.order_id">
+<path fill="none" stroke="#64748b" d="M649.85,-1422.8C649.85,-1422.8 786.03,-1810.2 786.03,-1810.2"/>
+</a>
+</g>
+<text xml:space="preserve" text-anchor="middle" x="768.55" y="-1789.33" font-family="Arial" font-size="10.00">0..*</text>
+<text xml:space="preserve" text-anchor="middle" x="667.33" y="-1437.67" font-family="Arial" font-size="10.00">1</text>
+</g>
+</g>
 </svg>

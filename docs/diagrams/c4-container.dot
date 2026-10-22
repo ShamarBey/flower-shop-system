@@ -1,0 +1,25 @@
+digraph Containers {
+  graph [rankdir=LR, bgcolor="white", pad="0.4", nodesep="0.6", ranksep="0.9", fontname="Arial", fontsize=20, labelloc=t, label="C4 Container — информационная система цветочного магазина"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=14, margin="0.2,0.15", fillcolor="#dbeafe", color="#334155"];
+  edge [fontname="Arial", fontsize=11, color="#475569"];
+  Client [label="Клиент\n[Person]"];
+  Staff [label="Менеджер / кладовщик / флорист / администратор\n[Person]"];
+  Notify [label="Провайдер уведомлений\n[External system]\nEmail / SMS / messenger", fillcolor="#f3f4f6"];
+  subgraph cluster_shop {
+    label="Информационная система цветочного магазина";
+    color="#64748b";
+    style=dashed;
+    Web [label="Веб-приложение\n[Container: Vue 3 + TypeScript]\nКаталог, конструктор, кабинет, панель сотрудников"];
+    API [label="Backend API\n[Container: Python / FastAPI]\nМодульный монолит: заказы, каталог, склад", fillcolor="#dcfce7"];
+    DB [label="Основная база\n[Container: PostgreSQL]\nПользователи, заказы, остатки, резервы", fillcolor="#fef3c7"];
+    Redis [label="Кэш\n[Container: Redis]\nУскорение чтения; не источник остатков", fillcolor="#fef3c7"];
+    Storage [label="Хранилище изображений\n[Container: S3-compatible object storage]", fillcolor="#fef3c7"];
+    Web -> API [label="HTTPS / REST / JSON"];
+    API -> DB [label="SQL / транзакции"];
+    API -> Redis [label="Redis protocol / TTL cache"];
+    API -> Storage [label="HTTPS / S3 API"];
+  }
+  Client -> Web [label="Использует в браузере"];
+  Staff -> Web [label="Управляет через браузер"];
+  API -> Notify [label="HTTPS / API провайдера"];
+}

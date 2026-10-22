@@ -33,16 +33,14 @@
 
 ## 4. Основные Use Cases
 
-- UC-01: клиент просматривает каталог;
-- UC-02: клиент создает букет в конструкторе;
-- UC-03: система пересчитывает состав, наличие и цену;
-- UC-04: клиент оформляет заказ;
-- UC-05: менеджер подтверждает или отклоняет заказ;
-- UC-06: кладовщик проводит приход и списание;
-- UC-07: флорист собирает букет;
-- UC-08: менеджер изменяет статус заказа;
-- UC-09: клиент получает уведомление о статусе;
-- UC-10: администратор управляет ролями и доступом.
+- UC-01: клиент создает букет, система проверяет состав и пересчитывает цену;
+- UC-02: клиент оформляет заказ;
+- UC-03: менеджер подтверждает заказ или согласует замену;
+- UC-04: кладовщик проводит складскую операцию;
+- UC-05: флорист собирает букет;
+- UC-06: клиент или менеджер отменяет заказ.
+
+Просмотр каталога входит в сценарий создания букета. Уведомления и управление ролями описаны как планируемые функции; их API не входит в контракт лабораторной №2.
 
 Подробные сценарии приведены в [docs/use-cases.md](docs/use-cases.md).
 
@@ -62,18 +60,24 @@
 | DELETE | `/products/{productId}` | Архивирование товара | Менеджер, администратор | 204 |
 | GET | `/bouquet-drafts` | Черновики букетов клиента | Клиент | 200 |
 | POST | `/bouquet-drafts` | Создание черновика букета | Клиент | 201 |
+| GET | `/bouquet-drafts/{draftId}` | Получение черновика | Владелец | 200 |
 | POST | `/bouquet-drafts/{draftId}/items` | Добавление компонента | Клиент | 201 |
+| PATCH | `/bouquet-drafts/{draftId}/items/{itemId}` | Изменение количества | Владелец | 200 |
 | DELETE | `/bouquet-drafts/{draftId}/items/{itemId}` | Удаление компонента | Клиент | 204 |
-| POST | `/bouquet-drafts/{draftId}/validate` | Проверка состава, наличия и цены | Клиент | 200 |
-| GET | `/orders` | Список заказов | Клиент, сотрудники | 200 |
+| POST | `/bouquet-drafts/{draftId}/validations` | Проверка состава, наличия и цены | Владелец | 200 |
+| GET | `/orders` | Список заказов | Клиент — свои; менеджер, флорист, администратор — все | 200 |
 | POST | `/orders` | Создание заказа и резервирование | Клиент | 201 |
-| GET | `/orders/{orderId}` | Получение заказа | Владелец, сотрудники | 200 |
+| GET | `/orders/{orderId}` | Получение заказа | Владелец, менеджер, флорист, администратор | 200 |
 | PATCH | `/orders/{orderId}/status` | Изменение статуса заказа | Менеджер, флорист, администратор | 200 |
-| POST | `/orders/{orderId}/cancel` | Отмена заказа и освобождение резерва | Владелец, менеджер | 200 |
+| POST | `/orders/{orderId}/cancellations` | Отмена заказа и освобождение резерва | Владелец, менеджер, администратор | 200 |
 | GET | `/inventory/stock` | Просмотр складских остатков | Кладовщик, менеджер, администратор | 200 |
-| POST | `/inventory/movements` | Приход, списание или корректировка | Кладовщик, администратор | 201 |
+| POST | `/inventory/movements` | Приход или списание | Кладовщик, администратор | 201 |
 
 Полная спецификация OpenAPI 3.0.3 находится в корне репозитория: [openapi.yaml](openapi.yaml).
+
+Всего в таблице 22 операции. Черновики доступны только владельцу; чужой UUID дает 404. Просмотр активного каталога не требует JWT; просмотр архивных товаров разрешен менеджеру и администратору. Для защищенных операций 401 означает отсутствие действительного JWT, 403 — нехватку прав, 404 — отсутствие ресурса, 409 — конфликт состояния или нехватку остатков, 400 — некорректные входные данные.
+
+Swagger UI служит для демонстрации контракта. Страница запускается по инструкции в README; исполняемый backend в лабораторных №1–2 не реализуется.
 
 ## 6. Функциональные требования
 
@@ -113,23 +117,26 @@
 
 ```mermaid
 flowchart LR
-    Client[Клиент<br/>Web browser]
-    Staff[Сотрудник магазина<br/>Web browser]
-    API[Backend API<br/>FastAPI modular monolith]
-    DB[(PostgreSQL<br/>catalog, orders, inventory)]
-    Redis[(Redis<br/>cache and reservations)]
-    Notify[Notification provider<br/>email / SMS / messenger]
-    Storage[(Object storage<br/>product images)]
-
-    Client -->|HTTPS REST/JSON| API
-    Staff -->|HTTPS REST/JSON| API
-    API -->|SQL transactions| DB
-    API -->|TTL keys, cache| Redis
-    API -->|events and messages| Notify
-    API -->|images| Storage
+    Client[Клиент — Person]
+    Staff[Сотрудники — Person]
+    Notify[Провайдер уведомлений — External system]
+    subgraph System[Информационная система цветочного магазина]
+      Web[Веб-приложение — Container<br/>Vue 3 + TypeScript]
+      API[Backend API — Container<br/>FastAPI modular monolith]
+      DB[(PostgreSQL — Container<br/>Пользователи, заказы, остатки, резервы)]
+      Redis[(Redis — Container<br/>Кэш)]
+      Storage[(Object storage — Container<br/>Изображения)]
+      Web -->|HTTPS REST/JSON| API
+      API -->|SQL / транзакции| DB
+      API -->|Redis protocol / TTL cache| Redis
+      API -->|HTTPS / S3 API| Storage
+    end
+    Client -->|Использует в браузере| Web
+    Staff -->|Управляет через браузер| Web
+    API -->|HTTPS / API провайдера| Notify
 ```
 
-Исходник диаграммы находится в [docs/diagrams/c4-container.mmd](docs/diagrams/c4-container.mmd).
+Пользователи находятся вне границы системы. Веб-приложение, Backend API, PostgreSQL, Redis и хранилище изображений — ее контейнеры; провайдер уведомлений — внешняя система. Источник SVG — [c4-container.dot](docs/diagrams/c4-container.dot), альтернативная запись — [c4-container.mmd](docs/diagrams/c4-container.mmd). Резервы хранятся в PostgreSQL; Redis используется как кэш.
 
 ## 10. Основные модули backend
 
@@ -145,11 +152,13 @@ flowchart LR
 
 ## 11. Данные
 
-Основные сущности: `User`, `Role`, `CustomerProfile`, `Product`, `Category`, `Warehouse`, `StockBalance`, `StockMovement`, `BouquetRecipe`, `RecipeItem`, `BouquetDraft`, `BouquetDraftItem`, `Order`, `OrderItem`, `OrderStatusHistory`, `Reservation`.
+Основные сущности: `User`, `Role`, `UserRole`, `CustomerProfile`, `Product`, `Category`, `Warehouse`, `StockBalance`, `StockMovement`, `BouquetRecipe`, `RecipeItem`, `BouquetDraft`, `BouquetDraftItem`, `Order`, `OrderItem`, `OrderStatusHistory`, `Reservation`.
 
 Полная ER-схема находится в [docs/diagrams/erd.dbml](docs/diagrams/erd.dbml), описание модели — в [docs/domain-model.md](docs/domain-model.md).
 
 ![ER Diagram](docs/diagrams/erd.svg)
+
+ERD содержит 17 таблиц и 23 связи, сгенерированные непосредственно из DBML. `users` и `customer_profiles` связаны как 1 к 0..1; `user_roles` и `recipe_items` реализуют N:M. Кратность подписана на каждом конце связи. Исходник Graphviz — [erd.dot](docs/diagrams/erd.dot). Для подробного просмотра откройте SVG отдельно и увеличьте масштаб.
 
 Ответы на контрольные вопросы находятся в [docs/control-questions.md](docs/control-questions.md).
 
@@ -158,8 +167,8 @@ flowchart LR
 | Требование лабораторной работы | Артефакт |
 |---|---|
 | Минимум две роли и Use Cases | Разделы 3–4 и `docs/use-cases.md` |
-| Минимум пять сущностей | Раздел 10 и `docs/diagrams/erd.dbml` |
-| C4 Container | Раздел 8 и `docs/diagrams/c4-container.mmd` |
+| Минимум пять сущностей | Раздел 11 и `docs/diagrams/erd.dbml` |
+| C4 Container | Раздел 9 и `docs/diagrams/c4-container.mmd` |
 | ERD в 3NF | `docs/diagrams/erd.dbml` |
 | README и ARCHITECTURE | `README.md` и этот файл |
 | REST API таблица | Раздел 5 «REST API Specs» |

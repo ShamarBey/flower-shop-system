@@ -101,6 +101,8 @@ paths:
       tags: [Catalog]
       summary: Получить каталог товаров
       operationId: listProducts
+      security: []
+      description: Публичный каталог. Неактивные товары видят только менеджер и администратор с действительным JWT; для остальных is_active=false возвращает 403.
       parameters:
         - $ref: '#/components/parameters/CategoryIdQuery'
         - name: product_type
@@ -125,6 +127,8 @@ paths:
                 $ref: '#/components/schemas/ProductListResponse'
         '400':
           $ref: '#/components/responses/ValidationError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
 
     post:
       tags: [Catalog]
@@ -218,6 +222,7 @@ paths:
       tags: [Bouquets]
       summary: Получить черновики букетов клиента
       operationId: listBouquetDrafts
+      description: Только собственные черновики текущего клиента. Чужие черновики никогда не включаются в ответ.
       responses:
         '200':
           description: Список черновиков
@@ -257,6 +262,7 @@ paths:
       tags: [Bouquets]
       summary: Получить черновик букета
       operationId: getBouquetDraft
+      description: Только владелец черновика. Для чужого UUID возвращается 404, чтобы не раскрывать его существование.
       responses:
         '200':
           description: Черновик найден
@@ -274,6 +280,7 @@ paths:
       tags: [Bouquets]
       summary: Добавить компонент в букет
       operationId: addBouquetItem
+      description: Только владелец черновика. Для чужого UUID возвращается 404. Товар не должен уже присутствовать в составе; дубликат возвращает 409.
       parameters:
         - $ref: '#/components/parameters/DraftIdPath'
       requestBody:
@@ -299,10 +306,46 @@ paths:
           $ref: '#/components/responses/Conflict'
 
   /bouquet-drafts/{draftId}/items/{itemId}:
+    patch:
+      tags: [Bouquets]
+      summary: Изменить количество компонента
+      operationId: updateBouquetItem
+      description: Только владелец черновика; itemId должен принадлежать draftId. Цена пересчитывается сервером, резерв не создается.
+      parameters:
+        - $ref: '#/components/parameters/DraftIdPath'
+        - $ref: '#/components/parameters/ItemIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [quantity]
+              additionalProperties: false
+              properties:
+                quantity:
+                  type: number
+                  minimum: 0.001
+      responses:
+        '200':
+          description: Количество обновлено, цена пересчитана
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BouquetDraftResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
     delete:
       tags: [Bouquets]
       summary: Удалить компонент из букета
       operationId: removeBouquetItem
+      description: Только владелец черновика; itemId должен принадлежать указанному draftId. Чужой или отсутствующий ресурс возвращает 404.
       parameters:
         - $ref: '#/components/parameters/DraftIdPath'
         - $ref: '#/components/parameters/ItemIdPath'
@@ -314,11 +357,12 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 
-  /bouquet-drafts/{draftId}/validate:
+  /bouquet-drafts/{draftId}/validations:
     post:
       tags: [Bouquets]
       summary: Проверить состав и цену букета
       operationId: validateBouquetDraft
+      description: Только владелец черновика; чужой UUID возвращает 404. Проверка не создает резерв. Сервер пересчитывает цену и наличие по текущим данным.
       parameters:
         - $ref: '#/components/parameters/DraftIdPath'
       responses:
@@ -338,6 +382,7 @@ paths:
       tags: [Orders]
       summary: Получить заказы
       operationId: listOrders
+      description: Клиент получает только собственные заказы. Менеджер, флорист и администратор видят заказы магазина; кладовщик получает 403.
       parameters:
         - name: status
           in: query
@@ -362,6 +407,7 @@ paths:
       tags: [Orders]
       summary: Создать заказ из валидного букета
       operationId: createOrder
+      description: Заказ создается только из собственного черновика клиента. Чужой или отсутствующий draft_id возвращает 404. Цены рассчитывает сервер; для DELIVERY обязателен непустой delivery_address, для PICKUP он не используется. scheduled_at должен быть в будущем. Проверка остатков и резерв выполняются в одной транзакции PostgreSQL.
       requestBody:
         required: true
         content:
@@ -379,6 +425,8 @@ paths:
           $ref: '#/components/responses/ValidationError'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
         '409':
           description: Недостаточно товара для резерва
           content:
@@ -391,6 +439,7 @@ paths:
       tags: [Orders]
       summary: Получить заказ
       operationId: getOrder
+      description: Доступен владельцу, менеджеру, флористу и администратору. Другой клиент или кладовщик получает 403.
       parameters:
         - $ref: '#/components/parameters/OrderIdPath'
       responses:
@@ -412,7 +461,7 @@ paths:
       tags: [Orders]
       summary: Изменить статус заказа
       operationId: updateOrderStatus
-      description: Доступно менеджеру, флористу и администратору. Переход проверяется бизнес-логикой.
+      description: Менеджер и администратор проводят допустимые переходы. Флорист может только CONFIRMED -> ASSEMBLING и ASSEMBLING -> READY. Недопустимая для роли операция возвращает 403, переход из неподходящего состояния — 409. Для отмены используется операция cancelOrder, которая освобождает резерв.
       parameters:
         - $ref: '#/components/parameters/OrderIdPath'
       requestBody:
@@ -439,11 +488,12 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
 
-  /orders/{orderId}/cancel:
+  /orders/{orderId}/cancellations:
     post:
       tags: [Orders]
       summary: Отменить заказ
       operationId: cancelOrder
+      description: Владелец может отменить только NEW или CONFIRMED; менеджер и администратор — также NEEDS_APPROVAL. Для ASSEMBLING, READY, COMPLETED и CANCELLED возвращается 409. Изменение статуса, запись истории и освобождение резерва выполняются атомарно.
       parameters:
         - $ref: '#/components/parameters/OrderIdPath'
       requestBody:
@@ -507,7 +557,7 @@ paths:
       tags: [Inventory]
       summary: Создать складское движение
       operationId: createStockMovement
-      description: Приход, списание или корректировка. Доступно кладовщику и администратору.
+      description: Приход или списание. Доступно кладовщику и администратору. Резервирование, освобождение и расход по заказу выполняются только внутренней логикой заказа. Нельзя списать зарезервированные товары; недостаток доступного остатка возвращает 409.
       requestBody:
         required: true
         content:
@@ -860,6 +910,7 @@ components:
         line_total:
           type: number
           format: double
+          description: Вычисляется сервером как цена за единицу × количество; в базе не хранится.
     BouquetDraftResponse:
       type: object
       required: [id, name, items, total_price, is_valid, created_at, updated_at]
@@ -950,6 +1001,7 @@ components:
         line_total:
           type: number
           format: double
+          description: round(unit_price_snapshot × quantity, 2); расчетное поле ответа, в базе не хранится.
     OrderResponse:
       type: object
       required: [id, number, status, fulfillment_type, items, subtotal, delivery_fee, total, created_at]
@@ -977,12 +1029,14 @@ components:
         subtotal:
           type: number
           format: double
+          description: Сумма вычисленных line_total; в базе не хранится.
         delivery_fee:
           type: number
           format: double
         total:
           type: number
           format: double
+          description: subtotal + delivery_fee; в базе не хранится.
         created_at:
           type: string
           format: date-time
@@ -1005,7 +1059,8 @@ components:
       required: [status]
       properties:
         status:
-          $ref: '#/components/schemas/OrderStatus'
+          type: string
+          enum: [CONFIRMED, NEEDS_APPROVAL, ASSEMBLING, READY, COMPLETED]
         comment:
           type: string
           maxLength: 1000
@@ -1035,7 +1090,8 @@ components:
           format: double
     MovementType:
       type: string
-      enum: [RECEIPT, RESERVATION, RELEASE, WRITE_OFF, SALE, ADJUSTMENT, TRANSFER]
+      description: Тип ручного движения; операции резервирования и продажи выполняются системой внутри заказа.
+      enum: [RECEIPT, WRITE_OFF]
     StockMovementRequest:
       type: object
       required: [warehouse_id, product_id, movement_type, quantity, reason]
