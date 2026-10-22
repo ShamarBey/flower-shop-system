@@ -1,4 +1,4 @@
-# Защита лабораторных №1–3
+# Защита лабораторных №1–4
 
 ## Лабораторная №1
 
@@ -33,3 +33,17 @@
 8. Выполнить `.\.venv\Scripts\python.exe -m pytest` и подготовить ответы из `docs/control-questions-lab3.md`.
 
 Подробное соответствие требованиям находится в [lab3.md](lab3.md). Рабочий серверный каркас выполняет health-check; заказы, каталог, авторизация и база данных на этом этапе еще не реализованы.
+
+## Лабораторная №4
+
+1. Убедиться, что Docker Engine запущен для Linux-контейнеров: выполнить `docker info`.
+2. Показать корневые `Dockerfile` и `.dockerignore`. Объяснить стадии builder/runtime, исключение `.env`, тестов и локальных зависимостей, порядок слоев кэша и запуск без root.
+3. Из корня проекта выполнить `docker build -t flower-shop-api:lab4 .`. Показать успешный результат сборки и `docker images flower-shop-api`.
+4. Выполнить `docker run --name flower-shop-lab4 -d -p 127.0.0.1:8081:8000 -e APP_ENV=development -e "APP_NAME=Flower Shop API (Docker)" flower-shop-api:lab4`. Если такое имя уже используется вашим предыдущим учебным контейнером, сначала проверить его и выполнить остановку/удаление по шагу 8.
+5. Показать `docker ps --filter name=flower-shop-lab4` и `docker logs flower-shop-lab4`.
+6. Открыть `http://127.0.0.1:8081/api/v1/health` или вызвать `curl.exe -i` по этому адресу. Показать HTTP 200, имя с пометкой `(Docker)`, окружение `development` и uptime.
+7. Показать проверку через `docker exec` из [lab4.md](lab4.md) и `docker inspect --format '{{.State.Health.Status}}' flower-shop-lab4`: после успешного HEALTHCHECK ожидается `healthy`.
+8. Выполнить `docker stop flower-shop-lab4`, затем `docker rm flower-shop-lab4`; объяснить, почему образ при этом сохраняется.
+9. Подготовить пять ответов из [control-questions-lab4.md](control-questions-lab4.md), особенно отличие `EXPOSE` от публикации `-p` и причину `HTTP_HOST=0.0.0.0` внутри контейнера.
+
+База данных и Docker Compose относятся к следующим лабораторным. При сдаче требуется показать реальные сборку и запуск: один Dockerfile без работающего контейнера не закрывает практическую часть.

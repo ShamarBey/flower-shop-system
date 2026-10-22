@@ -1,0 +1,17 @@
+# Allowlist: в контекст сборки входят только исходники и runtime-манифесты.
+# .git, .env*, tests/, docs/, node_modules/, .venv/, логи и артефакты
+# не отправляются Docker Engine и не могут попасть в слои образа.
+**
+!requirements.txt
+!pyproject.toml
+!src/
+!src/**
+
+# Локальные Python-кэши не являются исходниками.
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.egg-info/
+**/.env*
+**/*.log

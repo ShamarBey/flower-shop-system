@@ -50,7 +50,7 @@ for (const ref of schema.refs) {
   assert.ok(indexed.has(child.fieldNames[0]), `${child.tableName}.${child.fieldNames[0]}: нет индекса FK`);
 }
 
-const markdown = ['README.md', 'ARCHITECTURE.md', 'docs/use-cases.md', 'docs/domain-model.md', 'docs/business-rules.md', 'docs/control-questions.md', 'docs/control-questions-lab2.md', 'docs/control-questions-lab3.md', 'docs/lab3.md', 'docs/defense-checklist.md'];
+const markdown = ['README.md', 'ARCHITECTURE.md', 'docs/use-cases.md', 'docs/domain-model.md', 'docs/business-rules.md', 'docs/control-questions.md', 'docs/control-questions-lab2.md', 'docs/control-questions-lab3.md', 'docs/control-questions-lab4.md', 'docs/lab3.md', 'docs/lab4.md', 'docs/validation-report.md', 'docs/defense-checklist.md'];
 for (const path of markdown) {
   for (const match of read(path).matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
     if (/^(https?:|#)/.test(match[1])) continue;
