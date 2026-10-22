@@ -14,6 +14,8 @@ servers:
     description: Локальный сервер разработки
 
 tags:
+  - name: Health
+    description: Работоспособность серверного процесса (реализовано в лабораторной №3)
   - name: Auth
     description: Регистрация, вход и текущий пользователь
   - name: Catalog
@@ -29,6 +31,21 @@ security:
   - bearerAuth: []
 
 paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Проверить работоспособность серверного процесса
+      operationId: getHealth
+      security: []
+      description: Публичная проверка жизни процесса. Не проверяет готовность PostgreSQL или Redis. uptime — секунды с запуска сервиса по монотонным часам.
+      responses:
+        '200':
+          description: Процесс работает
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
   /auth/register:
     post:
       tags: [Auth]
@@ -685,6 +702,27 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
 
   schemas:
+    HealthResponse:
+      type: object
+      required: [status, app_name, version, environment, uptime]
+      properties:
+        status:
+          type: string
+          enum: [pass]
+        app_name:
+          type: string
+          example: Flower Shop API
+        version:
+          type: string
+          example: 1.0.0
+        environment:
+          type: string
+          enum: [development, test, production]
+        uptime:
+          type: number
+          minimum: 0
+          description: Время с запуска сервиса в секундах
+          example: 12.345
     UUID:
       type: string
       format: uuid
