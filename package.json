@@ -2,7 +2,7 @@
   "name": "flower-shop-lab-docs",
   "version": "1.0.0",
   "private": true,
-  "description": "Проверка архитектурных материалов лабораторных работ №1–3",
+  "description": "Проверка архитектурных материалов лабораторных работ №1–4",
   "scripts": {
     "diagrams": "node tools/render_diagrams.mjs",
     "validate": "redocly lint openapi.yaml && node tools/check-docs.mjs",
