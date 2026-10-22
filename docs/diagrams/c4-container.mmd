@@ -1,15 +1,18 @@
 flowchart LR
-    Client[Клиент<br/>Web browser]
-    Staff[Сотрудник магазина<br/>Web browser]
-    API[Backend API<br/>FastAPI modular monolith]
-    DB[(PostgreSQL<br/>catalog, orders, inventory)]
-    Redis[(Redis<br/>cache and reservations)]
-    Notify[Notification provider<br/>email / SMS / messenger]
-    Storage[(Object storage<br/>product images)]
-
-    Client -->|HTTPS REST/JSON| API
-    Staff -->|HTTPS REST/JSON| API
-    API -->|SQL transactions| DB
-    API -->|TTL keys, cache| Redis
-    API -->|events and messages| Notify
-    API -->|images| Storage
+    Client[Клиент — Person]
+    Staff[Сотрудники — Person]
+    Notify[Провайдер уведомлений — External system]
+    subgraph System[Информационная система цветочного магазина]
+      Web[Веб-приложение — Container<br/>Vue 3 + TypeScript]
+      API[Backend API — Container<br/>FastAPI modular monolith]
+      DB[(PostgreSQL — Container<br/>Пользователи, заказы, остатки, резервы)]
+      Redis[(Redis — Container<br/>Кэш)]
+      Storage[(Object storage — Container<br/>Изображения)]
+      Web -->|HTTPS REST/JSON| API
+      API -->|SQL / транзакции| DB
+      API -->|Redis protocol / TTL cache| Redis
+      API -->|HTTPS / S3 API| Storage
+    end
+    Client -->|Использует в браузере| Web
+    Staff -->|Управляет через браузер| Web
+    API -->|HTTPS / API провайдера| Notify

@@ -43,10 +43,14 @@ Table roles {
 Table user_roles {
   user_id uuid [pk, ref: > users.id]
   role_id smallint [pk, ref: > roles.id]
+
+  indexes {
+    role_id [name: 'idx_user_roles_role']
+  }
 }
 
 Table customer_profiles {
-  user_id uuid [pk, ref: > users.id]
+  user_id uuid [pk, ref: - users.id]
   phone varchar(30) [not null]
   default_address text
 }
@@ -94,6 +98,10 @@ Table stock_balances {
   reserved numeric(12,3) [not null, default: 0]
   updated_at timestamptz [not null]
 
+  indexes {
+    product_id [name: 'idx_stock_balances_product']
+  }
+
   checks {
     `on_hand >= 0`
     `reserved >= 0`
@@ -111,6 +119,17 @@ Table stock_movements {
   order_id uuid [ref: > orders.id]
   created_by uuid [not null, ref: > users.id]
   created_at timestamptz [not null]
+
+  indexes {
+    (warehouse_id, product_id) [name: 'idx_movements_stock']
+    product_id [name: 'idx_movements_product']
+    order_id [name: 'idx_movements_order']
+    created_by [name: 'idx_movements_author']
+  }
+
+  checks {
+    `quantity > 0`
+  }
 }
 
 Table bouquet_recipes {
@@ -125,6 +144,14 @@ Table recipe_items {
   product_id uuid [pk, ref: > products.id]
   quantity numeric(10,3) [not null]
   is_required boolean [not null, default: false]
+
+  indexes {
+    product_id [name: 'idx_recipe_items_product']
+  }
+
+  checks {
+    `quantity > 0`
+  }
 }
 
 Table bouquet_drafts {
@@ -133,6 +160,10 @@ Table bouquet_drafts {
   name varchar(255)
   created_at timestamptz [not null]
   updated_at timestamptz [not null]
+
+  indexes {
+    customer_id [name: 'idx_drafts_customer']
+  }
 }
 
 Table bouquet_draft_items {
@@ -140,6 +171,15 @@ Table bouquet_draft_items {
   draft_id uuid [not null, ref: > bouquet_drafts.id]
   product_id uuid [not null, ref: > products.id]
   quantity numeric(10,3) [not null]
+
+  indexes {
+    (draft_id, product_id) [unique, name: 'uq_draft_product']
+    product_id [name: 'idx_draft_items_product']
+  }
+
+  checks {
+    `quantity > 0`
+  }
 }
 
 Table orders {
@@ -150,9 +190,7 @@ Table orders {
   fulfillment_type varchar(20) [not null]
   delivery_address text
   scheduled_at timestamptz
-  subtotal numeric(12,2) [not null]
   delivery_fee numeric(12,2) [not null, default: 0]
-  total numeric(12,2) [not null]
   created_at timestamptz [not null]
 
   indexes {
@@ -162,9 +200,9 @@ Table orders {
   }
 
   checks {
-    `subtotal >= 0`
     `delivery_fee >= 0`
-    `total >= 0`
+    `fulfillment_type IN ('DELIVERY', 'PICKUP')`
+    `fulfillment_type <> 'DELIVERY' OR (delivery_address IS NOT NULL AND length(trim(delivery_address)) > 0)`
   }
 }
 
@@ -175,16 +213,15 @@ Table order_items {
   product_name_snapshot varchar(255) [not null]
   unit_price_snapshot numeric(12,2) [not null]
   quantity numeric(10,3) [not null]
-  line_total numeric(12,2) [not null]
 
   indexes {
     order_id [name: 'idx_order_items_order']
+    product_id [name: 'idx_order_items_product']
   }
 
   checks {
     `quantity > 0`
     `unit_price_snapshot >= 0`
-    `line_total >= 0`
   }
 }
 
@@ -200,6 +237,12 @@ Table reservations {
   indexes {
     order_id [name: 'idx_reservations_order']
     expires_at [name: 'idx_reservations_expires']
+    warehouse_id [name: 'idx_reservations_warehouse']
+    product_id [name: 'idx_reservations_product']
+  }
+
+  checks {
+    `quantity > 0`
   }
 }
 
@@ -211,4 +254,9 @@ Table order_status_history {
   changed_by uuid [not null, ref: > users.id]
   comment text
   created_at timestamptz [not null]
+
+  indexes {
+    order_id [name: 'idx_status_history_order']
+    changed_by [name: 'idx_status_history_author']
+  }
 }

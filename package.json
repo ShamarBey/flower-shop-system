@@ -1,0 +1,19 @@
+{
+  "name": "flower-shop-lab-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Проверка архитектурных материалов лабораторных работ №1 и №2",
+  "scripts": {
+    "diagrams": "node tools/render_diagrams.mjs",
+    "validate": "redocly lint openapi.yaml && node tools/check-docs.mjs",
+    "docs": "python -m http.server 8080 --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "@dbml/core": "10.3.1",
+    "@playwright/cli": "0.1.22",
+    "@redocly/cli": "2.67.1",
+    "@viz-js/viz": "3.31.0",
+    "swagger-ui-dist": "5.34.0",
+    "yaml": "2.9.1"
+  }
+}
