@@ -1,0 +1,7 @@
+# This file instructs Redocly's linter to ignore the rules contained for specific parts of your API.
+# See https://redocly.com/docs/cli/ for more information.
+# Health — публичный liveness без параметров: нет осмысленного ответа 4XX.
+# Исключение относится только к этой операции; контрактные ошибки других API проверяются.
+openapi.yaml:
+  operation-4xx-response:
+    - '#/paths/~1health/get/responses'

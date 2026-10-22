@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flower-shop-system"
+version = "1.0.0"
+description = "Сервер информационной системы цветочного магазина: лабораторная №3"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.159.1",
+    "uvicorn==0.54.0",
+    "pydantic==2.14.1",
+    "pydantic-settings==2.16.1",
+]
+
+[project.scripts]
+flower-shop = "flower_shop.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

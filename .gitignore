@@ -25,6 +25,13 @@ coverage/
 reports/
 output/playwright/
 .playwright-cli/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+bin/
+*.exe
+*.bin
 
 # Local study source
 Lab01_Architecture.pdf

@@ -14,7 +14,7 @@ const methods = ['get', 'post', 'put', 'patch', 'delete'];
 const actual = Object.entries(api.paths).flatMap(([path, operations]) => methods.filter(m => operations[m]).map(m => `${m.toUpperCase()} ${path}`)).sort();
 const documented = [...architecture.matchAll(/^\| (GET|POST|PUT|PATCH|DELETE) \| `([^`]+)`/gm)].map(m => `${m[1]} ${m[2]}`).sort();
 assert.deepEqual(documented, actual, 'Таблица ARCHITECTURE должна совпадать с OpenAPI');
-for (const path of ['/products', '/products/{productId}']) {
+for (const path of ['/health', '/products', '/products/{productId}']) {
   assert.deepEqual(api.paths[path].get.security, [], `${path} должен быть публичным`);
 }
 const ids = Object.values(api.paths).flatMap(path => methods.filter(m => path[m]).map(m => path[m].operationId));
@@ -50,7 +50,7 @@ for (const ref of schema.refs) {
   assert.ok(indexed.has(child.fieldNames[0]), `${child.tableName}.${child.fieldNames[0]}: нет индекса FK`);
 }
 
-const markdown = ['README.md', 'ARCHITECTURE.md', 'docs/use-cases.md', 'docs/domain-model.md', 'docs/business-rules.md', 'docs/control-questions.md', 'docs/control-questions-lab2.md'];
+const markdown = ['README.md', 'ARCHITECTURE.md', 'docs/use-cases.md', 'docs/domain-model.md', 'docs/business-rules.md', 'docs/control-questions.md', 'docs/control-questions-lab2.md', 'docs/control-questions-lab3.md', 'docs/lab3.md', 'docs/defense-checklist.md'];
 for (const path of markdown) {
   for (const match of read(path).matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
     if (/^(https?:|#)/.test(match[1])) continue;
